@@ -50,7 +50,7 @@ export function Chapter4_DesignEnvironment() {
 2. Keep the public API of UserAccountService unchanged. No new parameters, no changed signatures.
 3. Add at least one PHPUnit test that fails before your fix and passes after, covering the exact race condition.
 4. Run PHPStan max. Do not add new ignores or weaken existing annotations.
-5. Paste the raw test output. Do not summarize — show the actual output.`}
+5. Paste the raw test output. Do not summarize -- show the actual output.`}
           note="Five lines. Each line is a machine-checkable constraint. The model cannot fake its way through this."
         />
       </div>

@@ -166,8 +166,8 @@ export function Chapter6_ReduceFriction() {
           It is repository structure, examples, validators, contracts, and workflows that make the wrong move hard. Once those exist, the prompt becomes small.
         </p>
         <div className="bg-gray-900 text-white p-8 rounded-2xl shadow-xl text-center">
-          <p className="text-gray-300 text-lg mb-4">The prompt is no longer the program.</p>
-          <p className="text-blue-300 font-semibold text-2xl mb-2">It is the trigger.</p>
+          <p className="text-gray-300 text-lg mb-4">The system is the prompt.</p>
+          <p className="text-blue-300 font-semibold text-2xl mb-2">The prompt is the trigger.</p>
           <p className="text-gray-400">The system does the rest.</p>
         </div>
       </div>

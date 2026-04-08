@@ -150,7 +150,7 @@ function ConstraintRule({
 
         <div className="grid grid-cols-[80px_1fr] gap-4 items-start">
           <span className="text-xs font-bold text-emerald-500 uppercase tracking-wider mt-1.5 flex items-center gap-1">
-            <CheckCircle size={14} /> Better
+            <CheckCircle size={14} /> Better still
           </span>
           <div className="bg-emerald-50 text-emerald-900 px-4 py-2.5 rounded-lg font-mono text-sm border border-emerald-100">{betterStill}</div>
         </div>
