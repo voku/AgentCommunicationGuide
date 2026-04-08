@@ -193,6 +193,16 @@ export default function App() {
       <footer className="bg-gray-900 text-gray-400 py-12 text-center text-sm">
         <p>Agentic Patterns © 2026</p>
         <p className="mt-2 text-gray-500">The future of AI-assisted development is not better prompt poetry. It's better engineering systems.</p>
+        <p className="mt-4">
+          <a
+            href="https://github.com/voku/AgentCommunicationGuide"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-gray-400 hover:text-white transition-colors underline underline-offset-4"
+          >
+            Contribute on GitHub
+          </a>
+        </p>
       </footer>
     </div>
     </LazyMotion>
