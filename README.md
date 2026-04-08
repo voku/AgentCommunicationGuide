@@ -10,12 +10,12 @@ An interactive web guide covering the practical patterns behind effective AI-ass
 
 ## What's Inside
 
-- **Chapter 1 — The Shift**: Why "prompt engineering" is the wrong mental model
-- **Chapter 2 — Speak in Constraints**: How to constrain agents instead of directing them
-- **Chapter 3 — Compress Intent**: Patterns that reduce translation loss between intent and execution
-- **Chapter 4 — Design the Environment**: Structuring repositories so agents can orient themselves
-- **Chapter 5 — Specialize the Work**: Routing tasks to the right model
-- **Chapter 6 — Reduce Cognitive Friction**: Speech-to-text, native language, and the art of deletion
+- **Chapter 1 — The Shift**: Why "prompt engineering" is the wrong mental model for 2026
+- **Chapter 2 — Why It Works**: The three mechanisms that make constraints beat prose
+- **Chapter 3 — Core Patterns**: Eight constraint patterns with typical failure modes for each
+- **Chapter 4 — In Practice**: One task, three instruction styles — the measurable delta
+- **Chapter 5 — Real Examples**: AmysEcho, SQL debugging, documentation synthesis, and PHPStan-driven quality
+- **Chapter 6 — Advanced Patterns**: Context rot, AGENTS.md vs skills, model specialization, voice ideation, deletion bias, and a conclusion
 
 ## Run Locally
 
