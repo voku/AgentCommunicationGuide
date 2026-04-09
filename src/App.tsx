@@ -19,6 +19,10 @@ import { Prompt7_RepositoryAnchors } from './components/prompts/Prompt7_Reposito
 import { Prompt8_StopIfStuck } from './components/prompts/Prompt8_StopIfStuck';
 import { Prompt9_PromptsShouldShrink } from './components/prompts/Prompt9_PromptsShouldShrink';
 import { Prompt10_OneSentenceConclusion } from './components/prompts/Prompt10_OneSentenceConclusion';
+import { Prompt11_VaguePhrases } from './components/prompts/Prompt11_VaguePhrases';
+import { Prompt12_DoubleCheckMultiPass } from './components/prompts/Prompt12_DoubleCheckMultiPass';
+import { Prompt13_DeletionContainment } from './components/prompts/Prompt13_DeletionContainment';
+import { Prompt14_MomentumMissingness } from './components/prompts/Prompt14_MomentumMissingness';
 
 type View = 'systems' | 'prompts';
 
@@ -42,6 +46,10 @@ const PROMPTS_NAV_ITEMS = [
   { id: 'prompt-8', label: '8. Steer attention' },
   { id: 'prompt-9', label: '9. Planning prompts' },
   { id: 'prompt-10', label: '10. Native language' },
+  { id: 'prompt-11', label: '11. Vague words' },
+  { id: 'prompt-12', label: '12. Double-check' },
+  { id: 'prompt-13', label: '13. Deletion & scope' },
+  { id: 'prompt-14', label: '14. Momentum & gaps' },
 ];
 
 export default function App() {
@@ -269,6 +277,10 @@ export default function App() {
                 <Prompt8_StopIfStuck />
                 <Prompt9_PromptsShouldShrink />
                 <Prompt10_OneSentenceConclusion />
+                <Prompt11_VaguePhrases />
+                <Prompt12_DoubleCheckMultiPass />
+                <Prompt13_DeletionContainment />
+                <Prompt14_MomentumMissingness />
               </>
             )}
           </article>
