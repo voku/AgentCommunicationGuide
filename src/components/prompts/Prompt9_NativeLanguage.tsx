@@ -1,10 +1,10 @@
 import { CodeSnippet } from '../CodeSnippet';
 
-export function Prompt10_OneSentenceConclusion() {
+export function Prompt9_NativeLanguage() {
   return (
-    <div id="prompt-10" className="mb-16 scroll-mt-24 sm:mb-24">
+    <div id="prompt-9" className="mb-16 scroll-mt-24 sm:mb-24">
       <h2 className="mb-6 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl md:text-4xl">
-        10. Add Native-Language Prompting as a Real Technique
+        9. Native-Language Prompting
       </h2>
 
       <p className="mb-8 text-xl font-medium leading-relaxed text-gray-800">
@@ -28,18 +28,10 @@ export function Prompt10_OneSentenceConclusion() {
         </div>
       </div>
 
-      <p className="mb-8 leading-relaxed text-gray-700">
+      <p className="leading-relaxed text-gray-700">
         That gives you low-friction thinking up front and high-quality English artifacts when it is time to hand work to
         the repository, the team, or the next agent.
       </p>
-
-      <div className="rounded-2xl bg-gray-900 p-6 text-white shadow-xl sm:p-8">
-        <div className="mb-3 text-sm font-bold uppercase tracking-widest text-blue-300">Final thesis</div>
-        <p className="text-xl font-medium leading-tight text-white sm:text-2xl">
-          Good prompts do not simulate expertise. They allocate attention, constrain behavior, demand proof, and control
-          stopping conditions.
-        </p>
-      </div>
     </div>
   );
 }

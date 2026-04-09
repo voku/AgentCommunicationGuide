@@ -1,10 +1,10 @@
 import { PromptExampleStack } from './PromptExampleLayouts';
 
-export function Prompt9_PromptsShouldShrink() {
+export function Prompt8_PlanningPrompts() {
   return (
-    <div id="prompt-9" className="mb-16 scroll-mt-24 sm:mb-24">
+    <div id="prompt-8" className="mb-16 scroll-mt-24 sm:mb-24">
       <h2 className="mb-6 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl md:text-4xl">
-        9. Add Planning Prompts
+        8. Planning Prompts: Decide Before You Execute
       </h2>
 
       <p className="mb-8 text-xl font-medium leading-relaxed text-gray-800">

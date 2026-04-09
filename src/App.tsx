@@ -1,6 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { LazyMotion, domAnimation, m } from 'motion/react';
+
+import { ViewContext } from './contexts/ViewContext';
 
 import { Chapter1_PromptEngineeringOver } from './components/sections/Chapter1_PromptEngineeringOver';
 import { Chapter2_SpeakInConstraints } from './components/sections/Chapter2_SpeakInConstraints';
@@ -14,15 +16,14 @@ import { Prompt2_ThreeTypesOfPrompts } from './components/prompts/Prompt2_ThreeT
 import { Prompt3_AntiAnchoringTrick } from './components/prompts/Prompt3_AntiAnchoringTrick';
 import { Prompt4_AskForProof } from './components/prompts/Prompt4_AskForProof';
 import { Prompt5_PreventHallucination } from './components/prompts/Prompt5_PreventHallucination';
-import { Prompt6_ForceRootCause } from './components/prompts/Prompt6_ForceRootCause';
-import { Prompt7_RepositoryAnchors } from './components/prompts/Prompt7_RepositoryAnchors';
-import { Prompt8_StopIfStuck } from './components/prompts/Prompt8_StopIfStuck';
-import { Prompt9_PromptsShouldShrink } from './components/prompts/Prompt9_PromptsShouldShrink';
-import { Prompt10_OneSentenceConclusion } from './components/prompts/Prompt10_OneSentenceConclusion';
-import { Prompt11_VaguePhrases } from './components/prompts/Prompt11_VaguePhrases';
-import { Prompt12_DoubleCheckMultiPass } from './components/prompts/Prompt12_DoubleCheckMultiPass';
-import { Prompt13_DeletionContainment } from './components/prompts/Prompt13_DeletionContainment';
-import { Prompt14_MomentumMissingness } from './components/prompts/Prompt14_MomentumMissingness';
+import { Prompt6_ContextAnchors } from './components/prompts/Prompt6_ContextAnchors';
+import { Prompt7_AttentionSteering } from './components/prompts/Prompt7_AttentionSteering';
+import { Prompt8_PlanningPrompts } from './components/prompts/Prompt8_PlanningPrompts';
+import { Prompt9_NativeLanguage } from './components/prompts/Prompt9_NativeLanguage';
+import { Prompt10_VaguePhrases } from './components/prompts/Prompt10_VaguePhrases';
+import { Prompt11_DoubleCheckMultiPass } from './components/prompts/Prompt11_DoubleCheckMultiPass';
+import { Prompt12_DeletionContainment } from './components/prompts/Prompt12_DeletionContainment';
+import { Prompt13_MomentumMissingness } from './components/prompts/Prompt13_MomentumMissingness';
 
 type View = 'systems' | 'prompts';
 
@@ -40,16 +41,15 @@ const PROMPTS_NAV_ITEMS = [
   { id: 'prompt-2', label: '2. Prompt shape' },
   { id: 'prompt-3', label: '3. Prompt classes' },
   { id: 'prompt-4', label: '4. Reusable examples' },
-  { id: 'prompt-5', label: '5. Anti-anchoring' },
-  { id: 'prompt-6', label: '6. Self-correction' },
-  { id: 'prompt-7', label: '7. Context anchors' },
-  { id: 'prompt-8', label: '8. Steer attention' },
-  { id: 'prompt-9', label: '9. Planning prompts' },
-  { id: 'prompt-10', label: '10. Native language' },
-  { id: 'prompt-11', label: '11. Vague words' },
-  { id: 'prompt-12', label: '12. Double-check' },
-  { id: 'prompt-13', label: '13. Deletion & scope' },
-  { id: 'prompt-14', label: '14. Momentum & gaps' },
+  { id: 'prompt-5', label: '5. Critical review' },
+  { id: 'prompt-6', label: '6. Context anchors' },
+  { id: 'prompt-7', label: '7. Steer attention' },
+  { id: 'prompt-8', label: '8. Planning prompts' },
+  { id: 'prompt-9', label: '9. Native language' },
+  { id: 'prompt-10', label: '10. Vague words' },
+  { id: 'prompt-11', label: '11. Double-check' },
+  { id: 'prompt-12', label: '12. Deletion & scope' },
+  { id: 'prompt-13', label: '13. Momentum & gaps' },
 ];
 
 export default function App() {
@@ -57,14 +57,39 @@ export default function App() {
   const [activeSection, setActiveSection] = useState('chapter-1');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [view, setView] = useState<View>('systems');
+  const pendingScrollRef = useRef<string | null>(null);
   const assetBase = import.meta.env.BASE_URL;
 
   const NAV_ITEMS = view === 'systems' ? SYSTEMS_NAV_ITEMS : PROMPTS_NAV_ITEMS;
 
+  const switchView = (targetView: View, sectionId?: string) => {
+    pendingScrollRef.current = sectionId ?? null;
+    setView(targetView);
+  };
+
   useEffect(() => {
-    const defaultSection = view === 'systems' ? 'chapter-1' : 'prompt-1';
-    setActiveSection(defaultSection);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const pendingId = pendingScrollRef.current;
+    pendingScrollRef.current = null;
+
+    if (pendingId) {
+      setActiveSection(pendingId);
+      const raf = requestAnimationFrame(() => {
+        const element = document.getElementById(pendingId);
+        if (element) {
+          const offset = 80;
+          const bodyRect = document.body.getBoundingClientRect().top;
+          const elementRect = element.getBoundingClientRect().top;
+          const elementPosition = elementRect - bodyRect;
+          const offsetPosition = elementPosition - offset;
+          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+        }
+      });
+      return () => cancelAnimationFrame(raf);
+    } else {
+      const defaultSection = view === 'systems' ? 'chapter-1' : 'prompt-1';
+      setActiveSection(defaultSection);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }, [view]);
 
   useEffect(() => {
@@ -122,6 +147,7 @@ export default function App() {
   };
 
   return (
+    <ViewContext.Provider value={{ switchView }}>
     <LazyMotion features={domAnimation}>
       <div className="min-h-screen bg-[#fafafa] text-gray-900 font-sans selection:bg-blue-200">
         <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/90 backdrop-blur-md">
@@ -272,15 +298,14 @@ export default function App() {
                 <Prompt3_AntiAnchoringTrick />
                 <Prompt4_AskForProof />
                 <Prompt5_PreventHallucination />
-                <Prompt6_ForceRootCause />
-                <Prompt7_RepositoryAnchors />
-                <Prompt8_StopIfStuck />
-                <Prompt9_PromptsShouldShrink />
-                <Prompt10_OneSentenceConclusion />
-                <Prompt11_VaguePhrases />
-                <Prompt12_DoubleCheckMultiPass />
-                <Prompt13_DeletionContainment />
-                <Prompt14_MomentumMissingness />
+                <Prompt6_ContextAnchors />
+                <Prompt7_AttentionSteering />
+                <Prompt8_PlanningPrompts />
+                <Prompt9_NativeLanguage />
+                <Prompt10_VaguePhrases />
+                <Prompt11_DoubleCheckMultiPass />
+                <Prompt12_DeletionContainment />
+                <Prompt13_MomentumMissingness />
               </>
             )}
           </article>
@@ -306,6 +331,7 @@ export default function App() {
         </footer>
       </div>
     </LazyMotion>
+    </ViewContext.Provider>
   );
 }
 

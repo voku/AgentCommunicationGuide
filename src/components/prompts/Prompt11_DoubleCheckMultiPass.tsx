@@ -1,10 +1,10 @@
 import { PromptExampleStack } from './PromptExampleLayouts';
 
-export function Prompt12_DoubleCheckMultiPass() {
+export function Prompt11_DoubleCheckMultiPass() {
   return (
-    <div id="prompt-12" className="mb-16 scroll-mt-24 sm:mb-24">
+    <div id="prompt-11" className="mb-16 scroll-mt-24 sm:mb-24">
       <h2 className="mb-6 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl md:text-4xl">
-        12. Double-Check and Multi-Pass Prompts
+        11. Double-Check and Multi-Pass Prompts
       </h2>
 
       <p className="mb-8 text-xl font-medium leading-relaxed text-gray-800">
