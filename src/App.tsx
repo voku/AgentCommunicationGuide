@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import { Menu, X } from 'lucide-react';
 import { LazyMotion, domAnimation, m } from 'motion/react';
 
@@ -130,6 +130,36 @@ export default function App() {
     };
   }, [NAV_ITEMS]);
 
+  const navScrollRef = useRef<HTMLDivElement>(null);
+  const [navFade, setNavFade] = useState({ left: false, right: true });
+
+  const updateNavFade = useCallback(() => {
+    const el = navScrollRef.current;
+    if (!el) return;
+    setNavFade({
+      left: el.scrollLeft > 4,
+      right: el.scrollLeft < el.scrollWidth - el.clientWidth - 4,
+    });
+  }, []);
+
+  useEffect(() => {
+    const el = navScrollRef.current;
+    if (!el) return;
+    updateNavFade();
+    el.addEventListener('scroll', updateNavFade, { passive: true });
+    return () => el.removeEventListener('scroll', updateNavFade);
+  }, [updateNavFade, view]);
+
+  useEffect(() => {
+    const el = navScrollRef.current;
+    if (!el) return;
+    const activeBtn = el.querySelector<HTMLElement>('[aria-current="true"]');
+    if (activeBtn) {
+      activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+    updateNavFade();
+  }, [activeSection, updateNavFade]);
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -182,30 +212,45 @@ export default function App() {
 
             <nav
               aria-label="Table of contents"
-              className="hidden items-center justify-end gap-1 text-xs font-medium text-gray-600 md:flex lg:gap-2 lg:text-sm"
+              className="hidden min-w-0 flex-1 items-center justify-end gap-2 text-xs font-medium text-gray-600 md:flex"
             >
-              <ViewToggle view={view} onToggle={setView} />
-              <div className="mx-1 h-4 w-px bg-gray-200" />
-              {NAV_ITEMS.map(({ id, label }) => (
-                <button
-                  key={id}
-                  onClick={() => scrollToSection(id)}
-                  aria-controls={id}
-                  aria-current={activeSection === id ? 'true' : undefined}
-                  className={`relative whitespace-nowrap rounded-full px-2 py-1.5 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 lg:px-3 ${
-                    activeSection === id ? 'font-bold text-blue-700' : 'hover:text-gray-900'
-                  }`}
+              <div className="shrink-0">
+                <ViewToggle view={view} onToggle={setView} />
+              </div>
+              <div className="mx-1 h-4 w-px shrink-0 bg-gray-200" />
+              <div className="relative min-w-0 flex-1">
+                {navFade.left && (
+                  <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-8 bg-gradient-to-r from-white/95 to-transparent" />
+                )}
+                {navFade.right && (
+                  <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-8 bg-gradient-to-l from-white/95 to-transparent" />
+                )}
+                <div
+                  ref={navScrollRef}
+                  className="scrollbar-none flex items-center gap-1 overflow-x-auto lg:gap-2 lg:text-sm"
                 >
-                  {activeSection === id && (
-                    <m.div
-                      layoutId="activeNavIndicator"
-                      className="absolute bottom-0 left-2 right-2 h-0.5 rounded-full bg-blue-600"
-                      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                    />
-                  )}
-                  <span className="relative z-10">{label}</span>
-                </button>
-              ))}
+                  {NAV_ITEMS.map(({ id, label }) => (
+                    <button
+                      key={id}
+                      onClick={() => scrollToSection(id)}
+                      aria-controls={id}
+                      aria-current={activeSection === id ? 'true' : undefined}
+                      className={`relative shrink-0 whitespace-nowrap rounded-full px-2 py-1.5 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 lg:px-3 ${
+                        activeSection === id ? 'font-bold text-blue-700' : 'hover:text-gray-900'
+                      }`}
+                    >
+                      {activeSection === id && (
+                        <m.div
+                          layoutId="activeNavIndicator"
+                          className="absolute bottom-0 left-2 right-2 h-0.5 rounded-full bg-blue-600"
+                          transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                        />
+                      )}
+                      <span className="relative z-10">{label}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
             </nav>
           </div>
 
