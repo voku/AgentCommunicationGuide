@@ -32,16 +32,16 @@ const SYSTEMS_NAV_ITEMS = [
 ];
 
 const PROMPTS_NAV_ITEMS = [
-  { id: 'prompt-1', label: '1. No longer the star' },
-  { id: 'prompt-2', label: '2. Three types' },
-  { id: 'prompt-3', label: '3. Anti-anchoring' },
-  { id: 'prompt-4', label: '4. Ask for proof' },
-  { id: 'prompt-5', label: '5. No hallucination' },
-  { id: 'prompt-6', label: '6. Root cause' },
-  { id: 'prompt-7', label: '7. Repo anchors' },
-  { id: 'prompt-8', label: '8. Stop if stuck' },
-  { id: 'prompt-9', label: '9. Prompts shrink' },
-  { id: 'prompt-10', label: '10. One sentence' },
+  { id: 'prompt-1', label: '1. Core mistake' },
+  { id: 'prompt-2', label: '2. Prompt shape' },
+  { id: 'prompt-3', label: '3. Prompt classes' },
+  { id: 'prompt-4', label: '4. Reusable examples' },
+  { id: 'prompt-5', label: '5. Anti-anchoring' },
+  { id: 'prompt-6', label: '6. Self-correction' },
+  { id: 'prompt-7', label: '7. Context anchors' },
+  { id: 'prompt-8', label: '8. Steer attention' },
+  { id: 'prompt-9', label: '9. Planning prompts' },
+  { id: 'prompt-10', label: '10. Native language' },
 ];
 
 export default function App() {

@@ -1,64 +1,43 @@
+import { CodeSnippet } from '../CodeSnippet';
+
 export function Prompt10_OneSentenceConclusion() {
   return (
     <div id="prompt-10" className="mb-16 scroll-mt-24 sm:mb-24">
       <h2 className="mb-6 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl md:text-4xl">
-        10. The Best Prompt Is Often One Sentence
+        10. Add Native-Language Prompting as a Real Technique
       </h2>
 
-      <p className="mb-6 text-xl font-medium leading-relaxed text-gray-800">
-        Developers often assume longer prompts produce better results. The opposite is usually true.
+      <p className="mb-8 text-xl font-medium leading-relaxed text-gray-800">
+        Native-language prompting is not workflow trivia. It is a practical way to preserve fast thinking while still
+        producing durable English repo artifacts.
       </p>
+
+      <div className="mb-8 grid gap-6 lg:grid-cols-2">
+        <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:p-6">
+          <h3 className="mb-3 font-bold text-gray-900">Brainstorm fast</h3>
+          <p className="mb-4 text-sm leading-relaxed text-gray-600">Use your native language while exploring the problem.</p>
+          <CodeSnippet code="[brainstorm in native language]" language="native" />
+        </div>
+        <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:p-6">
+          <h3 className="mb-3 font-bold text-gray-900">Then operationalize it</h3>
+          <p className="mb-4 text-sm leading-relaxed text-gray-600">Turn the raw idea into a durable execution prompt.</p>
+          <CodeSnippet
+            code="Summarize this into a short English implementation plan with acceptance criteria."
+            language="prompt"
+          />
+        </div>
+      </div>
 
       <p className="mb-8 leading-relaxed text-gray-700">
-        Long prompts introduce ambiguity. Short prompts that reference external constraints are stronger.
+        That gives you low-friction thinking up front and high-quality English artifacts when it is time to hand work to
+        the repository, the team, or the next agent.
       </p>
 
-      <div className="mb-10 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-        <h3 className="mb-4 font-bold text-gray-900">Examples that work well</h3>
-        <div className="space-y-3">
-          {[
-            'Fix the root cause. Keep the public API unchanged.',
-            'Add a regression test. Run PHPStan at max level.',
-            'Produce the smallest patch that makes the test pass.',
-          ].map((example) => (
-            <pre
-              key={example}
-              className="overflow-x-auto rounded-lg bg-gray-900 p-3 font-mono text-sm leading-relaxed whitespace-pre-wrap text-gray-100"
-            >
-              {example}
-            </pre>
-          ))}
-        </div>
-      </div>
-
-      <div className="my-10 rounded-r-2xl border-l-4 border-blue-600 bg-blue-50 p-6 shadow-sm sm:p-8">
-        <h3 className="mb-3 text-sm font-bold uppercase tracking-wider text-blue-900">The actual rule</h3>
-        <p className="mb-3 text-2xl font-semibold leading-tight text-blue-800 sm:text-3xl">
-          Prompts still matter — but only when they encode constraints, not personality.
-        </p>
-        <p className="text-lg text-blue-700">
-          Once constraints are in place, the prompts become surprisingly small. And that is a good sign.
-        </p>
-      </div>
-
       <div className="rounded-2xl bg-gray-900 p-6 text-white shadow-xl sm:p-8">
-        <h3 className="mb-4 font-bold text-blue-200">Good prompts</h3>
-        <div className="space-y-2">
-          {[
-            'define constraints',
-            'require verification',
-            'limit scope',
-            'reference repository patterns',
-            'prevent guessing',
-          ].map((item) => (
-            <div key={item} className="flex items-center gap-3">
-              <div className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-blue-400" />
-              <span className="text-gray-300">{item}</span>
-            </div>
-          ))}
-        </div>
-        <p className="mt-6 text-gray-400">
-          Because the real intelligence no longer lives in the prompt. It lives in the system the prompt activates.
+        <div className="mb-3 text-sm font-bold uppercase tracking-widest text-blue-300">Final thesis</div>
+        <p className="text-xl font-medium leading-tight text-white sm:text-2xl">
+          Good prompts do not simulate expertise. They allocate attention, constrain behavior, demand proof, and control
+          stopping conditions.
         </p>
       </div>
     </div>
