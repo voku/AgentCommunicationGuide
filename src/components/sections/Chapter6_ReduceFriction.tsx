@@ -14,17 +14,34 @@ export function Chapter6_ReduceFriction() {
       </p>
 
       <AdvancedSection title="The diagram is simple because the system should be simple">
-        <pre className="overflow-x-auto rounded-2xl bg-gray-900 p-5 font-mono text-sm leading-relaxed text-gray-100">
-{`Prompt
-  ↓
-Spec / TODO
-  ↓
-Implementation
-  ↓
-Validators
-  ↓
-CI`}
-        </pre>
+        <div className="rounded-r-2xl border-l-4 border-blue-600 bg-blue-50 p-6 shadow-sm sm:p-8">
+          <div className="flex flex-col items-start gap-1">
+            {[
+              { label: 'Prompt', sub: 'what you want' },
+              { label: 'Spec / TODO', sub: 'written intent, open questions' },
+              { label: 'Implementation', sub: 'code changes scoped to the spec' },
+              { label: 'Validators', sub: 'tests · static analysis · build' },
+              { label: 'CI', sub: 'merge gate — machine-checkable done' },
+            ].map((step, i, arr) => (
+              <div key={step.label} className="flex flex-col items-start">
+                <div className="flex items-center gap-4">
+                  <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-blue-600 text-xs font-bold text-white">
+                    {i + 1}
+                  </span>
+                  <div>
+                    <span className="font-semibold text-blue-900">{step.label}</span>
+                    <span className="ml-2 text-sm text-blue-700">{step.sub}</span>
+                  </div>
+                </div>
+                {i < arr.length - 1 && (
+                  <div className="ml-3 flex h-7 w-1 items-center">
+                    <div className="mx-auto h-full w-0.5 bg-blue-300" />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
       </AdvancedSection>
 
       <AdvancedSection title="Practical checklist">

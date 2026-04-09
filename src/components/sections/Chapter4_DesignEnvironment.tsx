@@ -62,37 +62,52 @@ export function Chapter4_DesignEnvironment() {
       <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm">
         <table className="w-full border-collapse text-left text-sm">
           <thead>
-            <tr className="border-b border-gray-200 bg-gray-50">
-              <th className="px-5 py-3 font-semibold text-gray-700">Metric</th>
-              <th className="px-5 py-3 font-semibold text-red-600">Vague</th>
-              <th className="px-5 py-3 font-semibold text-amber-600">Basic</th>
-              <th className="px-5 py-3 font-semibold text-blue-600">Constraint-driven</th>
+            <tr>
+              <th className="border-b border-gray-200 bg-gray-50 px-5 py-4 font-semibold text-gray-700">Metric</th>
+              <th className="border-b border-red-200 bg-red-50 px-5 py-4 font-semibold text-red-700">
+                <span className="flex items-center gap-1.5">
+                  <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-red-100 text-xs font-bold text-red-700">A</span>
+                  Vague
+                </span>
+              </th>
+              <th className="border-b border-amber-200 bg-amber-50 px-5 py-4 font-semibold text-amber-700">
+                <span className="flex items-center gap-1.5">
+                  <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-amber-100 text-xs font-bold text-amber-700">B</span>
+                  Basic
+                </span>
+              </th>
+              <th className="border-b border-blue-200 bg-blue-50 px-5 py-4 font-semibold text-blue-700">
+                <span className="flex items-center gap-1.5">
+                  <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-blue-100 text-xs font-bold text-blue-700">C</span>
+                  Constraint-driven
+                </span>
+              </th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100 text-gray-700">
             <tr className="hover:bg-gray-50">
-              <td className="px-5 py-3 font-medium">Scope creep</td>
-              <td className="px-5 py-3 text-red-600">Common</td>
-              <td className="px-5 py-3 text-amber-600">Possible</td>
-              <td className="px-5 py-3 text-blue-600">Explicitly constrained</td>
+              <td className="px-5 py-3 font-medium text-gray-900">Scope creep</td>
+              <td className="bg-red-50/40 px-5 py-3 text-red-700">Common</td>
+              <td className="bg-amber-50/40 px-5 py-3 text-amber-700">Possible</td>
+              <td className="bg-blue-50/40 px-5 py-3 font-medium text-blue-700">Explicitly constrained</td>
             </tr>
             <tr className="hover:bg-gray-50">
-              <td className="px-5 py-3 font-medium">Regression protection</td>
-              <td className="px-5 py-3 text-red-600">Optional</td>
-              <td className="px-5 py-3 text-amber-600">Maybe</td>
-              <td className="px-5 py-3 text-blue-600">Required</td>
+              <td className="px-5 py-3 font-medium text-gray-900">Regression protection</td>
+              <td className="bg-red-50/40 px-5 py-3 text-red-700">Optional</td>
+              <td className="bg-amber-50/40 px-5 py-3 text-amber-700">Maybe</td>
+              <td className="bg-blue-50/40 px-5 py-3 font-medium text-blue-700">Required</td>
             </tr>
             <tr className="hover:bg-gray-50">
-              <td className="px-5 py-3 font-medium">Static analysis</td>
-              <td className="px-5 py-3 text-red-600">Ignored</td>
-              <td className="px-5 py-3 text-amber-600">Easy to skip</td>
-              <td className="px-5 py-3 text-blue-600">Part of done</td>
+              <td className="px-5 py-3 font-medium text-gray-900">Static analysis</td>
+              <td className="bg-red-50/40 px-5 py-3 text-red-700">Ignored</td>
+              <td className="bg-amber-50/40 px-5 py-3 text-amber-700">Easy to skip</td>
+              <td className="bg-blue-50/40 px-5 py-3 font-medium text-blue-700">Part of done</td>
             </tr>
             <tr className="hover:bg-gray-50">
-              <td className="px-5 py-3 font-medium">Evidence quality</td>
-              <td className="px-5 py-3 text-red-600">Storytelling</td>
-              <td className="px-5 py-3 text-amber-600">Partial</td>
-              <td className="px-5 py-3 text-blue-600">Machine-checkable</td>
+              <td className="px-5 py-3 font-medium text-gray-900">Evidence quality</td>
+              <td className="bg-red-50/40 px-5 py-3 text-red-700">Storytelling</td>
+              <td className="bg-amber-50/40 px-5 py-3 text-amber-700">Partial</td>
+              <td className="bg-blue-50/40 px-5 py-3 font-medium text-blue-700">Machine-checkable</td>
             </tr>
           </tbody>
         </table>
