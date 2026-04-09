@@ -8,7 +8,7 @@ An interactive web guide covering the practical patterns behind effective AI-ass
 
 - **Chapter 1 — The Shift**: Why "prompt engineering" is the wrong mental model for 2026
 - **Chapter 2 — Why It Works**: The three mechanisms that make constraints beat prose
-- **Chapter 3 — How to Speak to a Coding Agent**: Eight constraint patterns with typical failure modes for each
+- **Chapter 3 — How to Speak to a Coding Agent**: How to persist rules in AGENTS.md, skills, TODOs, and specs instead of repeating them in every prompt
 - **Chapter 4 — One Task, Three Instructions**: One task, three instruction styles — the measurable delta
 - **Chapter 5 — Real Examples From Our Own Work**: AmysEcho, SQL debugging, documentation synthesis, and PHPStan-driven quality
 - **Chapter 6 — Advanced Patterns and Operational Notes**: Context rot, AGENTS.md vs skills, model specialization, voice ideation, deletion bias, and a conclusion
