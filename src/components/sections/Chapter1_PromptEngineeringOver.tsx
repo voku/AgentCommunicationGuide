@@ -15,7 +15,7 @@ export function Chapter1_PromptEngineeringOver() {
       </h2>
 
       <p className="mb-6 text-lg font-medium leading-relaxed text-gray-800 sm:text-xl">
-        In 2024 everybody talked about prompt engineering. The story was seductive: write a better paragraph and the
+        In 2024 everybody talked about prompt engineering for LLMs. The story was seductive: write a better paragraph and the
         model will write better code.
       </p>
       <p className="mb-6 leading-relaxed text-gray-700">
@@ -23,10 +23,19 @@ export function Chapter1_PromptEngineeringOver() {
         compiles, and then review catches the same old mess: wrong conventions, missing tests, skipped edge cases,
         static analysis violations, and files touched for no good reason.
       </p>
+      
+      <p className="mb-6 text-lg font-medium leading-relaxed text-gray-800 sm:text-xl">
+        In 2025 the industry reacted with a new idea: <em>spec-driven development for LLMs</em>.  
+        The logic sounded better. Instead of clever prompts, you write the requirements and let the coding agent do the typing.
+      </p>
       <p className="mb-8 leading-relaxed text-gray-700">
-        That is not a prompt problem. That is a missing-system problem. Software quality does not come from adjectives
-        like <em>clean</em>, <em>robust</em>, or <em>senior-level</em>. It comes from a repository that makes the wrong move
-        hard.
+        But that also only moves the problem one level up. A spec without enforcement is just a longer prompt.
+      </p>
+      
+      <p className="mb-6 text-lg font-medium leading-relaxed text-gray-800 sm:text-xl">
+        Now it is 2026. The models are stronger and need less hand holding, but the lesson stayed the same.  
+        Software quality does not come from adjectives like <em>clean</em>, <em>robust</em>, or <em>senior-level</em>.
+        It comes from a repository that makes the wrong move hard.
       </p>
 
       <div className="my-10 rounded-r-2xl border-l-4 border-blue-600 bg-blue-50 p-6 shadow-sm sm:p-8">
