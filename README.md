@@ -10,7 +10,7 @@ Live at: **https://voku.github.io/AgentCommunicationGuide/**
 
 - **The real problem**: why prompt engineering is the wrong place to look for reliability
 - **Why constraints win**: tests, static analysis, CI, and repository examples beat prose
-- **Put rules in files**: AGENTS.md, reusable workflows, specs, TODOs, and validation checklists
+- **Put rules in files**: AGENTS.md, reusable workflows, Makefiles, specs, TODOs, and validation checklists
 - **Same task, better system**: one PHP bugfix task with three instruction styles and very different outcomes
 - **What fails in practice**: common failure stories from real codebases
 - **Practical rules**: a short checklist for making coding agents less annoying and more predictable
