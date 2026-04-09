@@ -19,9 +19,9 @@ const VAGUE_WORDS = [
 
 export function Prompt11_VaguePhrases() {
   return (
-    <div id="prompt-11" className="mb-16 scroll-mt-24 sm:mb-24">
+    <div id="prompt-10" className="mb-16 scroll-mt-24 sm:mb-24">
       <h2 className="mb-6 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl md:text-4xl">
-        11. Words That Quietly Break Your Prompts
+        10. Words That Quietly Break Your Prompts
       </h2>
 
       <p className="mb-8 text-xl font-medium leading-relaxed text-gray-800">

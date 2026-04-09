@@ -55,6 +55,12 @@ Follow best practices and think step by step.`}
         That also lines up with the current agent loop: plan, edit, run tools, observe, repair, repeat. The prompt
         should frame the loop, not impersonate the engineer.
       </p>
+
+      <div className="mt-8 rounded-xl border border-blue-200 bg-blue-50 p-4 text-sm text-blue-900 shadow-sm sm:p-5">
+        <strong className="text-blue-950">→ See also (Systems view):</strong> The repository-level foundation — tests,
+        static analysis, CI, and AGENTS.md — is what keeps these prompts small. Switch to the{' '}
+        <strong>Systems</strong> tab to see how to build it.
+      </div>
     </div>
   );
 }

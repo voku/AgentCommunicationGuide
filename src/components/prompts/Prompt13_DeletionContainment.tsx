@@ -2,9 +2,9 @@ import { PromptExampleStack } from './PromptExampleLayouts';
 
 export function Prompt13_DeletionContainment() {
   return (
-    <div id="prompt-13" className="mb-16 scroll-mt-24 sm:mb-24">
+    <div id="prompt-12" className="mb-16 scroll-mt-24 sm:mb-24">
       <h2 className="mb-6 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl md:text-4xl">
-        13. Prompt for Deletion and Containment
+        12. Prompt for Deletion and Containment
       </h2>
 
       <p className="mb-8 text-xl font-medium leading-relaxed text-gray-800">

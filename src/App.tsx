@@ -14,7 +14,6 @@ import { Prompt2_ThreeTypesOfPrompts } from './components/prompts/Prompt2_ThreeT
 import { Prompt3_AntiAnchoringTrick } from './components/prompts/Prompt3_AntiAnchoringTrick';
 import { Prompt4_AskForProof } from './components/prompts/Prompt4_AskForProof';
 import { Prompt5_PreventHallucination } from './components/prompts/Prompt5_PreventHallucination';
-import { Prompt6_ForceRootCause } from './components/prompts/Prompt6_ForceRootCause';
 import { Prompt7_RepositoryAnchors } from './components/prompts/Prompt7_RepositoryAnchors';
 import { Prompt8_StopIfStuck } from './components/prompts/Prompt8_StopIfStuck';
 import { Prompt9_PromptsShouldShrink } from './components/prompts/Prompt9_PromptsShouldShrink';
@@ -40,16 +39,15 @@ const PROMPTS_NAV_ITEMS = [
   { id: 'prompt-2', label: '2. Prompt shape' },
   { id: 'prompt-3', label: '3. Prompt classes' },
   { id: 'prompt-4', label: '4. Reusable examples' },
-  { id: 'prompt-5', label: '5. Anti-anchoring' },
-  { id: 'prompt-6', label: '6. Self-correction' },
-  { id: 'prompt-7', label: '7. Context anchors' },
-  { id: 'prompt-8', label: '8. Steer attention' },
-  { id: 'prompt-9', label: '9. Planning prompts' },
-  { id: 'prompt-10', label: '10. Native language' },
-  { id: 'prompt-11', label: '11. Vague words' },
-  { id: 'prompt-12', label: '12. Double-check' },
-  { id: 'prompt-13', label: '13. Deletion & scope' },
-  { id: 'prompt-14', label: '14. Momentum & gaps' },
+  { id: 'prompt-5', label: '5. Critical review' },
+  { id: 'prompt-6', label: '6. Context anchors' },
+  { id: 'prompt-7', label: '7. Steer attention' },
+  { id: 'prompt-8', label: '8. Planning prompts' },
+  { id: 'prompt-9', label: '9. Native language' },
+  { id: 'prompt-10', label: '10. Vague words' },
+  { id: 'prompt-11', label: '11. Double-check' },
+  { id: 'prompt-12', label: '12. Deletion & scope' },
+  { id: 'prompt-13', label: '13. Momentum & gaps' },
 ];
 
 export default function App() {
@@ -272,7 +270,6 @@ export default function App() {
                 <Prompt3_AntiAnchoringTrick />
                 <Prompt4_AskForProof />
                 <Prompt5_PreventHallucination />
-                <Prompt6_ForceRootCause />
                 <Prompt7_RepositoryAnchors />
                 <Prompt8_StopIfStuck />
                 <Prompt9_PromptsShouldShrink />

@@ -3,9 +3,9 @@ import { CodeSnippet } from '../CodeSnippet';
 
 export function Prompt14_MomentumMissingness() {
   return (
-    <div id="prompt-14" className="mb-16 scroll-mt-24 sm:mb-24">
+    <div id="prompt-13" className="mb-16 scroll-mt-24 sm:mb-24">
       <h2 className="mb-6 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl md:text-4xl">
-        14. Momentum Capture, Missingness, and Anti-Rubber-Stamp
+        13. Momentum Capture and Missingness
       </h2>
 
       <p className="mb-8 text-xl font-medium leading-relaxed text-gray-800">
@@ -51,44 +51,6 @@ export function Prompt14_MomentumMissingness() {
           note="Error-finding and missingness-finding are different lenses. Bug-finding finds what is broken. Missingness-finding finds what was never built. Both are necessary. Neither replaces the other."
         />
 
-        <PromptExampleStack
-          title='Anti-rubber-stamp — challenge the polished draft'
-          entries={[
-            {
-              label: 'Bad',
-              tone: 'red',
-              content:
-                'Here is the final implementation. Review it.',
-            },
-            {
-              label: 'Best',
-              tone: 'blue',
-              content:
-                'Do not assume this solution is correct just because it looks polished.\nTreat it as a first draft.\nChallenge it: find the three most likely failure modes and the one design assumption that could be wrong.',
-            },
-          ]}
-          note="Polished code anchors the next model into reviewer mode. Explicit anti-rubber-stamp prompts break that anchor and force adversarial thinking even on code that looks finished."
-        />
-
-        <PromptExampleStack
-          title='Prove how it fails — not just that it might'
-          entries={[
-            {
-              label: 'Weak',
-              tone: 'amber',
-              content:
-                'Check for errors.',
-            },
-            {
-              label: 'Best',
-              tone: 'blue',
-              content:
-                'Prove why this implementation will fail under load.\nDescribe the exact failure scenario: request volume, race condition, or resource exhaustion that triggers it.',
-            },
-          ]}
-          note="'Prove why it fails' pushes the model toward adversarial and stress thinking instead of polite surface scanning. It produces specific failure scenarios, not reassuring summaries."
-        />
-
         <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
           <div className="border-b border-gray-200 bg-gray-50 px-5 py-4">
             <h3 className="text-lg font-bold text-gray-900">Separation of ideation from implementation</h3>
@@ -119,8 +81,14 @@ export function Prompt14_MomentumMissingness() {
         </div>
       </div>
 
+      <div className="mt-8 rounded-r-2xl border-l-4 border-violet-500 bg-violet-50 p-5 text-sm text-violet-900 shadow-sm sm:p-6">
+        <strong className="text-violet-950">→ See also:</strong> Anti-rubber-stamp and "prove how it fails" patterns are
+        covered in depth in{' '}
+        <strong>section 5 (Critical Review: Anti-Anchoring and Self-Correction)</strong> above.
+      </div>
+
       <div className="mt-8 rounded-2xl bg-gray-900 p-6 text-white shadow-xl sm:p-8">
-        <div className="mb-3 text-sm font-bold uppercase tracking-widest text-violet-300">Revised final thesis</div>
+        <div className="mb-3 text-sm font-bold uppercase tracking-widest text-violet-300">Final thesis</div>
         <p className="text-xl font-medium leading-tight text-white sm:text-2xl">
           Good prompts do not simulate expertise. They allocate attention, constrain behavior, demand proof, control
           stopping conditions — and capture what works so the next session can start where this one finished.
