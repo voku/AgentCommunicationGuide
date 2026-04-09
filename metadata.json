@@ -1,5 +1,5 @@
 {
-  "name": "Agent Communication Guide",
-  "description": "An interactive guide on how to talk to your coding agent, featuring interactive chat examples.",
+  "name": "Stop Writing Better Prompts. Build Better Systems.",
+  "description": "An opinionated interactive article about coding agents, tests, static analysis, CI, and maintainable software systems.",
   "requestFramePermissions": []
 }
