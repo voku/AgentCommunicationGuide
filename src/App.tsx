@@ -24,6 +24,7 @@ import { Prompt10_VaguePhrases } from './components/prompts/Prompt10_VaguePhrase
 import { Prompt11_DoubleCheckMultiPass } from './components/prompts/Prompt11_DoubleCheckMultiPass';
 import { Prompt12_DeletionContainment } from './components/prompts/Prompt12_DeletionContainment';
 import { Prompt13_MomentumMissingness } from './components/prompts/Prompt13_MomentumMissingness';
+import { Prompt14_VerifyWithTests } from './components/prompts/Prompt14_VerifyWithTests';
 
 type View = 'systems' | 'prompts';
 
@@ -50,6 +51,7 @@ const PROMPTS_NAV_ITEMS = [
   { id: 'prompt-11', label: '11. Double-check' },
   { id: 'prompt-12', label: '12. Deletion & scope' },
   { id: 'prompt-13', label: '13. Momentum & gaps' },
+  { id: 'prompt-14', label: '14. Verify with tests' },
 ];
 
 export default function App() {
@@ -306,6 +308,7 @@ export default function App() {
                 <Prompt11_DoubleCheckMultiPass />
                 <Prompt12_DeletionContainment />
                 <Prompt13_MomentumMissingness />
+                <Prompt14_VerifyWithTests />
               </>
             )}
           </article>
