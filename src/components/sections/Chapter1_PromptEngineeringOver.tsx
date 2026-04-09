@@ -1,4 +1,5 @@
 import { TerminalSquare } from 'lucide-react';
+import { CrossViewLink } from '../CrossViewLink';
 
 export function Chapter1_PromptEngineeringOver() {
   return (
@@ -54,9 +55,10 @@ export function Chapter1_PromptEngineeringOver() {
       </div>
 
       <div className="mt-8 rounded-xl border border-violet-200 bg-violet-50 p-4 text-sm text-violet-900 shadow-sm sm:p-5">
-        <strong className="text-violet-950">→ See also (Prompts view):</strong> Once the system is in place, you still
-        need prompts that constrain behavior and demand proof. Switch to the <strong>Prompts</strong> tab for practical
-        patterns you can use tomorrow.
+        <strong className="text-violet-950">→ See also:</strong> Once the system is in place, you still need prompts
+        that constrain behavior and demand proof.{' '}
+        <CrossViewLink targetView="prompts">Switch to the Prompts view</CrossViewLink> for practical patterns you can
+        use tomorrow.
       </div>
     </div>
   );

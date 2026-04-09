@@ -1,4 +1,6 @@
-export function Prompt7_RepositoryAnchors() {
+import { CrossViewLink } from '../CrossViewLink';
+
+export function Prompt6_ContextAnchors() {
   return (
     <div id="prompt-6" className="mb-16 scroll-mt-24 sm:mb-24">
       <h2 className="mb-6 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl md:text-4xl">
@@ -43,9 +45,12 @@ export function Prompt7_RepositoryAnchors() {
       </div>
 
       <div className="mt-6 rounded-xl border border-blue-200 bg-blue-50 p-4 text-sm text-blue-900 shadow-sm sm:p-5">
-        <strong className="text-blue-950">→ See also (Systems view):</strong> Chapter 3 (Put the rules in the
-        repository) explains where these anchors live — AGENTS.md, Skills files, and reusable workflow docs. Anchors in
-        prompts are the runtime half; files are the persistence half.
+        <strong className="text-blue-950">→ See also:</strong>{' '}
+        <CrossViewLink targetView="systems" sectionId="chapter-3">
+          Chapter 3 (Put the rules in the repository) in the Systems view
+        </CrossViewLink>{' '}
+        explains where these anchors live — AGENTS.md, Skills files, and reusable workflow docs. Anchors in prompts are
+        the runtime half; files are the persistence half.
       </div>
     </div>
   );

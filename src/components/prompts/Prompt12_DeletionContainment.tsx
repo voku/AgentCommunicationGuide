@@ -1,6 +1,6 @@
 import { PromptExampleStack } from './PromptExampleLayouts';
 
-export function Prompt13_DeletionContainment() {
+export function Prompt12_DeletionContainment() {
   return (
     <div id="prompt-12" className="mb-16 scroll-mt-24 sm:mb-24">
       <h2 className="mb-6 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl md:text-4xl">

@@ -1,4 +1,5 @@
 import { FileCheck, FileStack, Files, NotebookPen, Scale, Terminal } from 'lucide-react';
+import { CrossViewLink } from '../CrossViewLink';
 
 const RULES = [
   {
@@ -76,9 +77,12 @@ export function Chapter3_CompressIntent() {
       </div>
 
       <div className="mt-6 rounded-xl border border-violet-200 bg-violet-50 p-4 text-sm text-violet-900 shadow-sm sm:p-5">
-        <strong className="text-violet-950">→ See also (Prompts view):</strong> Section 6 (Context Anchors) shows how a
-        single compressed phrase like "TDD Detroit School" can reload an entire methodology — a practical extension of
-        what belongs in Skills and AGENTS.md.
+        <strong className="text-violet-950">→ See also:</strong>{' '}
+        <CrossViewLink targetView="prompts" sectionId="prompt-6">
+          Section 6 (Context Anchors) in the Prompts view
+        </CrossViewLink>{' '}
+        shows how a single compressed phrase like "TDD Detroit School" can reload an entire methodology — the runtime
+        counterpart to Skills and AGENTS.md.
       </div>
     </div>
   );

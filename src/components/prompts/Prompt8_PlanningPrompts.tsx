@@ -1,6 +1,6 @@
 import { PromptExampleStack } from './PromptExampleLayouts';
 
-export function Prompt9_PromptsShouldShrink() {
+export function Prompt8_PlanningPrompts() {
   return (
     <div id="prompt-8" className="mb-16 scroll-mt-24 sm:mb-24">
       <h2 className="mb-6 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl md:text-4xl">

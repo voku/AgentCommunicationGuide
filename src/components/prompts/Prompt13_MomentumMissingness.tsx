@@ -1,7 +1,7 @@
 import { PromptExampleStack } from './PromptExampleLayouts';
 import { CodeSnippet } from '../CodeSnippet';
 
-export function Prompt14_MomentumMissingness() {
+export function Prompt13_MomentumMissingness() {
   return (
     <div id="prompt-13" className="mb-16 scroll-mt-24 sm:mb-24">
       <h2 className="mb-6 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl md:text-4xl">
@@ -82,8 +82,8 @@ export function Prompt14_MomentumMissingness() {
       </div>
 
       <div className="mt-8 rounded-r-2xl border-l-4 border-violet-500 bg-violet-50 p-5 text-sm text-violet-900 shadow-sm sm:p-6">
-        <strong className="text-violet-950">→ See also:</strong> Anti-rubber-stamp and "prove how it fails" patterns are
-        covered in depth in{' '}
+        <strong className="text-violet-950">→ See also:</strong> Anti-rubber-stamp, anti-anchoring, and self-correction
+        are covered in depth in{' '}
         <strong>section 5 (Critical Review: Anti-Anchoring and Self-Correction)</strong> above.
       </div>
 

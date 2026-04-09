@@ -17,7 +17,7 @@ const VAGUE_WORDS = [
   'it might be good to',
 ];
 
-export function Prompt11_VaguePhrases() {
+export function Prompt10_VaguePhrases() {
   return (
     <div id="prompt-10" className="mb-16 scroll-mt-24 sm:mb-24">
       <h2 className="mb-6 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl md:text-4xl">
