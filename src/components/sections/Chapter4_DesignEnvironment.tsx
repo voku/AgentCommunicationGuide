@@ -28,6 +28,7 @@ export function Chapter4_DesignEnvironment() {
 
       <div className="mb-12 space-y-8">
         <VersionBlock
+          badge="A"
           label="Vague confidence"
           color="red"
           icon={<XCircle className="h-5 w-5" />}
@@ -36,6 +37,7 @@ export function Chapter4_DesignEnvironment() {
         />
 
         <VersionBlock
+          badge="B"
           label="Slightly better, still weak"
           color="amber"
           icon={<XCircle className="h-5 w-5" />}
@@ -44,6 +46,7 @@ export function Chapter4_DesignEnvironment() {
         />
 
         <VersionBlock
+          badge="C"
           label="Constraint-driven"
           color="blue"
           icon={<CheckCircle className="h-5 w-5" />}
@@ -106,12 +109,14 @@ export function Chapter4_DesignEnvironment() {
 }
 
 function VersionBlock({
+  badge,
   label,
   color,
   icon,
   prompt,
   note,
 }: {
+  badge: string;
   label: string;
   color: 'red' | 'amber' | 'blue';
   icon: ReactNode;
@@ -144,7 +149,7 @@ function VersionBlock({
     <div className={`overflow-hidden rounded-2xl border bg-white shadow-sm ${styles.border}`}>
       <div className={`flex items-center gap-3 border-b px-5 py-4 font-bold ${styles.header} ${styles.border}`}>
         <span className={`flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold ${styles.badge}`}>
-          {color.toUpperCase().slice(0, 1)}
+          {badge}
         </span>
         <div className="flex items-center gap-2">
           {icon}

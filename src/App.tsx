@@ -22,6 +22,7 @@ export default function App() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState('chapter-1');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const assetBase = import.meta.env.BASE_URL;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -85,7 +86,7 @@ export default function App() {
             <div className="flex w-full items-center justify-between md:w-auto">
               <div className="flex items-center gap-2 font-semibold tracking-tight text-blue-600">
                 <img
-                  src="./favicon.svg"
+                  src={`${assetBase}favicon.svg`}
                   alt="suckup.de article icon"
                   className="h-6 w-6 rounded-md sm:h-8 sm:w-8"
                 />
