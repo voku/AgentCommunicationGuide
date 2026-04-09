@@ -9,96 +9,111 @@ export function Chapter3_CompressIntent() {
       </h2>
 
       <p className="mb-10 text-xl font-medium text-gray-800 leading-relaxed">
-        Do not speak in wishes. Speak in constraints that survive contact with execution.
+        Do not repeat the operating manual in every prompt. Persist the rules where the agent can reload them: AGENTS.md for global rules, skills for reusable workflows, and TODOs or specs for task state.
       </p>
+
+      <div className="mb-10 grid gap-4 md:grid-cols-3">
+        <div className="rounded-2xl border border-gray-200 bg-gray-50 p-5">
+          <div className="mb-2 text-xs font-bold uppercase tracking-wider text-gray-500">AGENTS.md</div>
+          <p className="text-sm leading-relaxed text-gray-700">Small global rules that should apply on every task.</p>
+        </div>
+        <div className="rounded-2xl border border-blue-100 bg-blue-50 p-5">
+          <div className="mb-2 text-xs font-bold uppercase tracking-wider text-blue-700">Skills</div>
+          <p className="text-sm leading-relaxed text-blue-900">Detailed, reusable workflows for specific domains or toolchains.</p>
+        </div>
+        <div className="rounded-2xl border border-emerald-100 bg-emerald-50 p-5">
+          <div className="mb-2 text-xs font-bold uppercase tracking-wider text-emerald-700">TODOs / Specs</div>
+          <p className="text-sm leading-relaxed text-emerald-900">Current task state, acceptance criteria, open questions, and handoff notes.</p>
+        </div>
+      </div>
 
       <div className="space-y-10">
         <ConstraintRule
           number={1}
-          title="Specify minimum guarantees"
-          bad="add a unit test"
-          better="add at least one unit test"
-          betterStill="add at least one PHPUnit test that fails before the change and passes after"
-          best="add at least one PHPUnit test for the edge case that triggered this bug; write the test before the fix"
-          failure="The agent adds one decorative assertion that passes without actually covering the bug."
-          why="'At least one' raises the floor. 'Fails before and passes after' forces causal verification. Anchoring it to the triggering edge case makes the agent understand the bug instead of just rearranging furniture."
+          title="Put universal rules in AGENTS.md"
+          bad="follow existing patterns, keep the patch small, run tests"
+          better="put the universal repository rules in AGENTS.md"
+          betterStill="keep AGENTS.md to a short set of rules that should apply on every task"
+          best="encode only the global repository invariants in AGENTS.md and stop repeating them in task prompts"
+          failure="Every session starts with the same ritual paragraph, and eventually one copy drifts from the others."
+          why="If a rule should apply on every request, it belongs in the global layer. Putting it in AGENTS.md makes it durable, cheaper, and much harder to forget."
         />
 
         <ConstraintRule
           number={2}
-          title="Anchor to repository patterns"
-          bad="refactor this code"
-          better="refactor this code to follow the existing repository patterns"
-          betterStill="refactor using the same patterns as AbstractValueObject and the existing immutable classes"
-          best="refactor to match the existing value-object architecture exactly: final class, readonly properties, strict typing, no setters, PHPStan-clean"
-          failure="The agent invents a new architecture that looks plausible but doesn't match anything else in the codebase."
-          why="Agents are pattern matchers. The repository is the highest-fidelity specification you have. The closer the instruction points to real code, the less room the model has to invent its own."
+          title="Move reusable workflows into skills"
+          bad="here is how to write tests, name files, structure mocks, and run coverage for this repo"
+          better="use the repository skill for this workflow"
+          betterStill="store framework-specific instructions in a dedicated skill instead of copying them into chat"
+          best="keep reusable domain workflows in skills and invoke the right one only when the task actually needs it"
+          failure="Your prompts turn into giant instruction dumps full of details that only matter for one kind of task."
+          why="Skills give you targeted context. They keep the global layer small while still preserving high-detail instructions for the moments when they matter."
         />
 
         <ConstraintRule
           number={3}
-          title="Use tooling as the judge"
-          bad="improve the code"
-          better="make the code pass PHPStan max"
-          betterStill="make the code pass PHPStan max without new ignores"
-          best="make the change pass PHPStan max, keep strict types, and do not add baseline entries or weaken existing annotations"
-          failure="The agent declares the code 'clean and maintainable' while PHPStan max still reports 12 errors."
-          why="'Clean' and 'maintainable' are aesthetic claims. PHPStan max is a measurable condition. Agents optimize against validators far better than against praise words."
+          title="Persist task state in TODOs and specs"
+          bad="continue where we left off"
+          better="here is the current task state"
+          betterStill="update TODO.md with progress, open issues, and the next decision to make"
+          best="store requirements in the spec and live execution state in TODO.md so any new session can resume without reconstructing the chat"
+          failure="A fresh session loses the real state, repeats work, or confidently resumes from the wrong assumption."
+          why="Agents are not reliable long-term memory. If the task state matters tomorrow, it must live in a file, not in yesterday's prompt."
         />
 
         <ConstraintRule
           number={4}
-          title="State what must not change"
-          bad="fix this bug"
-          better="identify the root cause and produce a minimal patch"
-          betterStill="identify the root cause and produce a minimal patch without changing the public API"
-          best="identify the root cause, produce the smallest stable patch, keep the public API unchanged, preserve existing contracts, and do not weaken tests"
-          failure="The agent rewrites half the service while 'fixing' a two-line bug."
-          why="Agents love broad rewrites because broad rewrites create many paths to something plausible. Explicit invariants narrow the search space and limit blast radius."
+          title="Put acceptance criteria in the spec, not the prompt"
+          bad="make this better"
+          better="write down the expected behavior first"
+          betterStill="capture exact acceptance criteria, invariants, and non-goals in the task spec"
+          best="treat the spec as the durable contract: expected behavior, forbidden regressions, edge cases, and what is explicitly out of scope"
+          failure="The agent optimizes for vague adjectives like 'cleaner' or 'nicer' and ships something persuasive but wrong."
+          why="Prompts evaporate. Specs survive handoffs, reviews, and retries. If success conditions matter, write them where the next agent can read them too."
         />
 
         <ConstraintRule
           number={5}
-          title="Force schema-first debugging"
-          bad="fix the SQL bug"
-          better="inspect the query first"
-          betterStill="review the schema and compare the working and failing query paths before proposing a fix"
-          best="inspect the schema first, compare the working and failing joins, identify the root cause, then produce the minimal fix"
-          failure="The agent patches SQL without reading the schema and introduces a subtler bug in a different join."
-          why="Without schema awareness, the agent is arranging SQL-shaped confetti. Structure before patching. Otherwise you get elegant nonsense."
+          title="Anchor to repository examples"
+          bad="implement it like the rest of the codebase"
+          better="follow the existing repository patterns"
+          betterStill="match the structure used in these specific files"
+          best="point to the concrete files, relevant skill, and active spec instead of re-describing the architecture in prose"
+          failure="The agent invents a plausible new pattern because the instruction never grounded it in real code."
+          why="The repository is still the highest-fidelity source of truth. Examples compress far more engineering knowledge than another paragraph of explanation."
         />
 
         <ConstraintRule
           number={6}
-          title="Force verification loops"
-          bad="implement the feature"
-          better="implement the feature and run the tests"
-          betterStill="implement the feature, run the relevant tests, and explain any failure before changing tests"
-          best="implement the feature, run the relevant test suite, paste the raw output, and do not modify assertions unless you can justify the behavior change explicitly"
-          failure="The agent reports 'all tests passing' with a fabricated summary instead of actual output."
-          why="Agents stop early and lie by summary — not maliciously, just statistically. Asking for raw output reduces fake closure and makes verification observable."
+          title="Persist the verification checklist"
+          bad="make sure it works"
+          better="run the tests and lint"
+          betterStill="record the required validators for this task in the spec or TODO"
+          best="store the exact validation gates with the task: which tests, which linters, which builds, and which shortcuts are not allowed"
+          failure="The agent claims success after running the wrong checks, skipping one, or summarizing green without evidence."
+          why="Validators are better judges than prose. Putting the checklist in the task artifact makes the finish line visible to every future session."
         />
 
         <ConstraintRule
           number={7}
-          title="Block hallucinations explicitly"
-          bad="document this code"
-          better="generate documentation from the code"
-          betterStill="derive documentation from code structure and tests"
-          best="derive documentation strictly from code, tests, and observable behavior; for anything not derivable, ask questions instead of guessing"
-          failure="The agent writes plausible-sounding documentation that contradicts the actual implementation."
-          why="'Ask instead of guess' is one of the highest-leverage phrases in this article. It turns hallucination into gap detection."
+          title="Write down unknowns instead of guessing"
+          bad="fill in the missing parts"
+          better="ask questions if something is unclear"
+          betterStill="track open questions and assumptions in the spec before implementation"
+          best="when intent is not derivable from code, tests, or the spec, stop and add an explicit open question instead of inventing an answer"
+          failure="The agent fills the missing requirement with something that sounds reasonable, and everyone notices only after the patch lands."
+          why="'Ask instead of guess' becomes much stronger when the unknown is persisted. Open questions in a task file turn hallucination into visible backlog."
         />
 
         <ConstraintRule
           number={8}
-          title="Prevent anchoring bias"
-          bad="here is the current implementation, improve it"
-          better="here is the current implementation; identify problems first before proposing changes"
-          betterStill="treat the current implementation as a first draft, not a reference; question its assumptions before building on it"
-          best="treat all existing code shown as a first draft requiring review; do not optimize around its current structure if a better approach exists; state any assumptions you are questioning"
-          failure="The agent inherits flawed design decisions from the existing code because it treats whatever is shown first as ground truth."
-          why="When you hand an agent production code as context, it anchors to that structure. Framing it explicitly as a 'first draft' signals that the agent should evaluate rather than extend. This is especially important when debugging or refactoring legacy systems where the current approach may be the root cause."
+          title="Make review state durable too"
+          bad="here is the final implementation"
+          better="review this draft critically"
+          betterStill="record the assumptions you are questioning and the risks you still see"
+          best="treat the implementation as a draft, and persist reviewed assumptions, rejected approaches, and remaining risks in the task artifacts for the next handoff"
+          failure="The next session treats the latest code as settled truth and silently inherits bad decisions from the previous one."
+          why="Review comments that live only in chat disappear. Review notes written back into TODOs or specs keep the critical thinking attached to the work."
         />
       </div>
     </div>
