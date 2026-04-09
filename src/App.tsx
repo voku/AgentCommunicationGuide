@@ -191,7 +191,7 @@ export default function App() {
                   alt="suckup.de article icon"
                   className="h-6 w-6 rounded-md sm:h-8 sm:w-8"
                 />
-                <span className="text-sm sm:text-base">suckup.de</span>
+                <span className="text-sm sm:text-base"></span>
               </div>
 
               <div className="flex items-center gap-3 md:hidden">
