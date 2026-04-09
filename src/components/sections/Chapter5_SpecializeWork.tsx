@@ -1,111 +1,58 @@
-import { Wrench } from 'lucide-react';
+import { Bug, FileWarning, Wrench } from 'lucide-react';
 
-const typeColors = {
-  contract: 'bg-purple-100 text-purple-700',
-  debugging: 'bg-amber-100 text-amber-700',
-  docs: 'bg-green-100 text-green-700',
-  quality: 'bg-blue-100 text-blue-700',
-} as const;
+const FAILURES = [
+  {
+    title: 'The impressive patch that ignores project rules',
+    icon: Bug,
+    story: 'A developer writes a long prompt. The model replies with a confident refactor. The code compiles, but it invents a new pattern, misses one edge case, and forgets the regression test. Review catches it a day later.',
+    fix: 'Store the constraints in the repository: point to the existing pattern, require the failing test first, and make CI prove the patch stayed inside the guardrails.',
+  },
+  {
+    title: 'Documentation that drifts the moment code changes',
+    icon: FileWarning,
+    story: 'The model writes beautiful documentation from intent instead of implementation. Two weeks later the code changed, the docs did not, and now the polished explanation is the least trustworthy artifact in the repo.',
+    fix: 'Derive docs from code, tests, and observable behavior. If the reason behind a decision is missing, force a question instead of allowing a guess.',
+  },
+  {
+    title: '“Clean this up” review culture',
+    icon: Wrench,
+    story: 'Everybody agrees the code should be cleaner, but nobody means exactly the same thing. One reviewer asks for smaller methods, another wants stricter types, a third wants fewer abstractions. The agent learns nothing stable from that.',
+    fix: 'Replace taste with tooling. Run PHPStan at max level, require reproducible tests, and make CI fail on the exact issues you care about.',
+  },
+] as const;
 
 export function Chapter5_SpecializeWork() {
   return (
-    <div id="chapter-5" className="scroll-mt-24 mb-16 sm:mb-24">
-      <h2 className="flex items-center gap-3 text-2xl sm:text-3xl md:text-4xl font-bold mb-6 text-gray-900 tracking-tight">
-        <Wrench className="text-blue-600 w-8 h-8 sm:w-10 sm:h-10 flex-shrink-0" />
-        5. Real Examples From Our Own Work
+    <div id="chapter-5" className="mb-16 scroll-mt-24 sm:mb-24">
+      <h2 className="mb-6 flex items-center gap-3 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl md:text-4xl">
+        <Bug className="h-8 w-8 flex-shrink-0 text-blue-600 sm:h-10 sm:w-10" />
+        5. What fails in real codebases
       </h2>
 
-      <p className="mb-10 text-xl font-medium text-gray-800 leading-relaxed">
-        Here is what the patterns look like in production. Each example shows the instruction that did not work, the one that did, and what actually changed.
+      <p className="mb-10 text-xl font-medium leading-relaxed text-gray-800">
+        This is where the whitepaper tone breaks down. Real repositories fail in boring, repetitive ways.
       </p>
 
       <div className="space-y-8">
-        <ExampleCard
-          title="AmysEcho — Contract Enforcement"
-          context="AmysEcho is a modular audio processing application where plugins declare feature contracts. Early on, compatibility checks relied entirely on the model 'remembering' which contract versions were compatible."
-          not="When adding a new plugin, remind the model about compatibility requirements and ask it to check version constraints."
-          but="Reject any plugin bundle that declares a featureContract.version that does not match the expected version range in the registry. No exceptions, no warnings."
-          changed="The model no longer had to 'remember compatibility.' The system enforced it. Compatibility errors dropped from a frequent source of review feedback to a build failure that never reached review."
-          type="contract"
-        />
+        {FAILURES.map(({ title, icon: Icon, story, fix }) => (
+          <div key={title} className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-shadow hover:shadow-md">
+            <div className="flex items-center gap-3 border-b border-gray-200 bg-gray-50 px-5 py-4">
+              <Icon className="h-5 w-5 text-blue-600" />
+              <h3 className="text-lg font-bold text-gray-900">{title}</h3>
+            </div>
 
-        <ExampleCard
-          title="SQL / Legacy PHP Debugging"
-          context="A legacy PHP service had intermittent JOIN failures that only appeared under specific filter combinations. Initial attempts to fix it by describing the symptoms produced plausible but wrong patches."
-          not="Fix the broken query that returns incorrect results when filtering by date range and status."
-          but="Inspect the schema first. Compare the working and failing join paths. Identify the root cause. Then produce the minimal patch — do not change anything not directly implicated."
-          changed="It prevented code-first guessing. The root cause turned out to be a missing index assumption that three previous 'fixes' had worked around rather than resolved. Schema-first found it in one pass."
-          type="debugging"
-        />
-
-        <ExampleCard
-          title="Documentation Synthesis"
-          context="Documentation was being written from memory and intent, which diverged from the actual implementation over time. Code changed; docs did not. Reviews kept catching stale documentation."
-          not="Write documentation for the PaymentProcessor service."
-          but="Derive documentation strictly from the implementation, its tests, and observable behavior. For anything that cannot be derived — missing intent, business rationale, edge case decisions — ask me instead of guessing."
-          changed="Documentation became synthesis rather than fiction. The questions the agent asked revealed undocumented decisions that had been invisible. Those gaps were more valuable than the documentation itself."
-          type="docs"
-        />
-
-        <ExampleCard
-          title="PHPStan-Driven Code Quality"
-          context="Code quality feedback in review was subjective and inconsistent. Different reviewers had different standards. Refactoring suggestions varied by who reviewed."
-          not="Clean this up and make it more maintainable."
-          but="Refactor to pass PHPStan max. No new ignores, no weakened annotations, strict types throughout, final classes where no extension is intended."
-          changed="Quality became machine-checkable rather than aesthetic. The reviewer's job shifted from 'is this clean?' to 'does PHPStan max pass?' That question has a binary answer. Review cycles shortened."
-          type="quality"
-        />
-      </div>
-    </div>
-  );
-}
-
-function ExampleCard({
-  title,
-  context,
-  not,
-  but,
-  changed,
-  type,
-}: {
-  title: string;
-  context: string;
-  not: string;
-  but: string;
-  changed: string;
-  type: keyof typeof typeColors;
-}) {
-
-  return (
-    <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-      <div className="bg-gray-50 px-5 py-4 border-b border-gray-200 flex items-center gap-3">
-        <span className={`px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${typeColors[type]}`}>
-          {type}
-        </span>
-        <h4 className="font-bold text-lg text-gray-900">{title}</h4>
-      </div>
-
-      <div className="p-5 sm:p-6 space-y-5">
-        <p className="text-sm text-gray-500 italic leading-relaxed border-l-2 border-gray-200 pl-3">{context}</p>
-
-        <div>
-          <span className="text-xs font-bold text-red-500 uppercase tracking-wider block mb-2">Not</span>
-          <div className="text-gray-600 font-mono text-sm line-through opacity-60 bg-red-50 px-4 py-2.5 rounded-lg border border-red-100">
-            {not}
+            <div className="space-y-4 p-5 sm:p-6">
+              <div>
+                <span className="mb-2 block text-xs font-bold uppercase tracking-wider text-red-500">Failure mode</span>
+                <p className="leading-relaxed text-gray-700">{story}</p>
+              </div>
+              <div className="rounded-xl border border-blue-100 bg-blue-50 px-4 py-3">
+                <span className="mb-1.5 block text-xs font-bold uppercase tracking-wider text-blue-700">What fixes it</span>
+                <p className="leading-relaxed text-blue-950">{fix}</p>
+              </div>
+            </div>
           </div>
-        </div>
-
-        <div>
-          <span className="text-xs font-bold text-green-600 uppercase tracking-wider block mb-2">But</span>
-          <div className="text-gray-900 font-mono text-sm font-medium bg-green-50 px-4 py-3 rounded-lg border border-green-100">
-            {but}
-          </div>
-        </div>
-
-        <div className="bg-blue-50 border border-blue-100 rounded-lg px-4 py-3">
-          <span className="text-xs font-bold text-blue-600 uppercase tracking-wider block mb-1.5">What this changed</span>
-          <p className="text-sm text-blue-900 leading-relaxed">{changed}</p>
-        </div>
+        ))}
       </div>
     </div>
   );

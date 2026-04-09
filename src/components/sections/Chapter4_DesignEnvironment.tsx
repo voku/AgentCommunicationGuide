@@ -1,116 +1,107 @@
 import type { ReactNode } from 'react';
-import { FlaskConical, XCircle, AlertTriangle, CheckCircle } from 'lucide-react';
+import { CheckCircle, FlaskConical, XCircle } from 'lucide-react';
 
 export function Chapter4_DesignEnvironment() {
   return (
-    <div id="chapter-4" className="scroll-mt-24 mb-16 sm:mb-24">
-      <h2 className="flex items-center gap-3 text-2xl sm:text-3xl md:text-4xl font-bold mb-6 text-gray-900 tracking-tight">
-        <FlaskConical className="text-blue-600 w-8 h-8 sm:w-10 sm:h-10 flex-shrink-0" />
-        4. One Task, Three Instructions
+    <div id="chapter-4" className="mb-16 scroll-mt-24 sm:mb-24">
+      <h2 className="mb-6 flex items-center gap-3 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl md:text-4xl">
+        <FlaskConical className="h-8 w-8 flex-shrink-0 text-blue-600 sm:h-10 sm:w-10" />
+        4. Same task, three very different outcomes
       </h2>
 
-      <p className="mb-4 text-xl font-medium text-gray-800 leading-relaxed">
-        The same task. Three different instruction styles. Measurably different outcomes.
+      <p className="mb-4 text-xl font-medium leading-relaxed text-gray-800">
+        The difference is usually not the model. The difference is how much of the system you make explicit.
       </p>
-      <p className="mb-10 text-gray-600 leading-relaxed">
-        The article has made claims. Here is the evidence. We use one grounded example — fix a bug in a PHP service without changing its public API — and run it through three instruction approaches.
+      <p className="mb-10 leading-relaxed text-gray-700">
+        Take a boring but realistic task: fix a concurrency bug in a PHP service without breaking the public API. Most
+        teams do not fail here because the bug is impossible. They fail because the instructions are vague and the
+        validation is weaker than the confidence of the generated patch.
       </p>
 
-      <div className="bg-gray-50 border border-gray-200 rounded-2xl p-5 sm:p-6 mb-10">
-        <h3 className="font-bold text-gray-900 mb-2">The task</h3>
-        <p className="text-gray-700 font-mono text-sm bg-white border border-gray-200 rounded-lg p-4">
-          There is a bug in the UserAccountService that causes incorrect balance calculations when multiple concurrent updates are processed. Fix it without breaking the public API.
+      <div className="mb-10 rounded-2xl border border-gray-200 bg-gray-50 p-5 sm:p-6">
+        <h3 className="mb-2 font-bold text-gray-900">The task</h3>
+        <p className="rounded-lg border border-gray-200 bg-white p-4 font-mono text-sm text-gray-700">
+          There is a bug in UserAccountService that causes incorrect balance calculations when multiple concurrent
+          updates are processed. Fix it without breaking the public API.
         </p>
       </div>
 
-      <div className="space-y-8 mb-12">
+      <div className="mb-12 space-y-8">
         <VersionBlock
-          version="A"
-          label="Roleplay prompt"
+          badge="A"
+          label="Vague confidence"
           color="red"
-          icon={<XCircle className="w-5 h-5" />}
-          prompt={`You are a senior PHP developer with 15 years of experience. Write a robust, maintainable, and production-ready fix for this concurrency issue. Make sure the solution is elegant and follows best practices.`}
-          note="Persona framing feels authoritative but gives the model zero measurable constraints. 'Robust,' 'elegant,' and 'best practices' are unmeasurable. The model optimizes for looking senior, not for being correct."
+          icon={<XCircle className="h-5 w-5" />}
+          prompt="You are a senior PHP developer. Write a robust and elegant fix for this concurrency issue."
+          note="This is mostly roleplay. It sounds serious and constrains almost nothing. The model can still change APIs, touch unrelated files, skip tests, and call it maintainable."
         />
 
         <VersionBlock
-          version="B"
-          label="Basic execution prompt"
+          badge="B"
+          label="Slightly better, still weak"
           color="amber"
-          icon={<AlertTriangle className="w-5 h-5" />}
-          prompt={`Fix the concurrency bug in UserAccountService. Run the tests.`}
-          note="Better — it includes a verification step. But it doesn't constrain the scope, define what must not change, or specify what 'done' looks like."
+          icon={<XCircle className="h-5 w-5" />}
+          prompt="Fix the concurrency bug in UserAccountService. Run the tests."
+          note="At least there is a validation hint. But the scope is still fuzzy, no static analysis is required, and nothing says what must not change."
         />
 
         <VersionBlock
-          version="C"
-          label="Constraint-driven prompt"
+          badge="C"
+          label="Constraint-driven"
           color="blue"
-          icon={<CheckCircle className="w-5 h-5" />}
-          prompt={`1. Identify the root cause of the concurrency issue. Do not start writing code yet.
-2. Keep the public API of UserAccountService unchanged. No new parameters, no changed signatures.
-3. Add at least one PHPUnit test that fails before your fix and passes after, covering the exact race condition.
-4. Run PHPStan max. Do not add new ignores or weaken existing annotations.
-5. Paste the raw test output. Do not summarize -- show the actual output.`}
-          note="Five lines. Each line is a machine-checkable constraint. The model cannot fake its way through this."
+          icon={<CheckCircle className="h-5 w-5" />}
+          prompt={`1. Identify the root cause before changing code.
+2. Keep the public API of UserAccountService unchanged.
+3. Add a PHPUnit test that fails before the fix and passes after.
+4. Run PHPStan at max level. Do not add ignores.
+5. Paste the raw test and static analysis output.`}
+          note="Five lines. No marketing language. Just boundaries, tooling, and evidence. That is the version I trust in a real repository."
         />
       </div>
 
-      <h3 className="text-xl font-bold mb-6 text-gray-900">The delta</h3>
       <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm">
-        <table className="w-full text-left border-collapse text-sm">
+        <table className="w-full border-collapse text-left text-sm">
           <thead>
-            <tr className="bg-gray-50 border-b border-gray-200">
-              <th className="py-3 px-5 font-semibold text-gray-700">Metric</th>
-              <th className="py-3 px-5 font-semibold text-red-600">A — Roleplay</th>
-              <th className="py-3 px-5 font-semibold text-amber-600">B — Basic</th>
-              <th className="py-3 px-5 font-semibold text-blue-600">C — Constraints</th>
+            <tr className="border-b border-gray-200 bg-gray-50">
+              <th className="px-5 py-3 font-semibold text-gray-700">Metric</th>
+              <th className="px-5 py-3 font-semibold text-red-600">Vague</th>
+              <th className="px-5 py-3 font-semibold text-amber-600">Basic</th>
+              <th className="px-5 py-3 font-semibold text-blue-600">Constraint-driven</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100 text-gray-700">
             <tr className="hover:bg-gray-50">
-              <td className="py-3 px-5 font-medium">Unrelated files touched</td>
-              <td className="py-3 px-5 text-red-600">Often several</td>
-              <td className="py-3 px-5 text-amber-600">Sometimes</td>
-              <td className="py-3 px-5 text-blue-600">Rarely</td>
+              <td className="px-5 py-3 font-medium">Scope creep</td>
+              <td className="px-5 py-3 text-red-600">Common</td>
+              <td className="px-5 py-3 text-amber-600">Possible</td>
+              <td className="px-5 py-3 text-blue-600">Explicitly constrained</td>
             </tr>
             <tr className="hover:bg-gray-50">
-              <td className="py-3 px-5 font-medium">Tests added or weakened</td>
-              <td className="py-3 px-5 text-red-600">Inconsistent</td>
-              <td className="py-3 px-5 text-amber-600">Maybe one</td>
-              <td className="py-3 px-5 text-blue-600">Required by constraint</td>
+              <td className="px-5 py-3 font-medium">Regression protection</td>
+              <td className="px-5 py-3 text-red-600">Optional</td>
+              <td className="px-5 py-3 text-amber-600">Maybe</td>
+              <td className="px-5 py-3 text-blue-600">Required</td>
             </tr>
             <tr className="hover:bg-gray-50">
-              <td className="py-3 px-5 font-medium">API stability</td>
-              <td className="py-3 px-5 text-red-600">Not guaranteed</td>
-              <td className="py-3 px-5 text-amber-600">Not guaranteed</td>
-              <td className="py-3 px-5 text-blue-600">Enforced explicitly</td>
+              <td className="px-5 py-3 font-medium">Static analysis</td>
+              <td className="px-5 py-3 text-red-600">Ignored</td>
+              <td className="px-5 py-3 text-amber-600">Easy to skip</td>
+              <td className="px-5 py-3 text-blue-600">Part of done</td>
             </tr>
             <tr className="hover:bg-gray-50">
-              <td className="py-3 px-5 font-medium">PHPStan outcome</td>
-              <td className="py-3 px-5 text-red-600">Not checked</td>
-              <td className="py-3 px-5 text-amber-600">Not specified</td>
-              <td className="py-3 px-5 text-blue-600">Required, no new ignores</td>
-            </tr>
-            <tr className="hover:bg-gray-50">
-              <td className="py-3 px-5 font-medium">Review effort</td>
-              <td className="py-3 px-5 text-red-600">High — scope creep</td>
-              <td className="py-3 px-5 text-amber-600">Medium</td>
-              <td className="py-3 px-5 text-blue-600">Low — bounded by design</td>
-            </tr>
-            <tr className="hover:bg-gray-50">
-              <td className="py-3 px-5 font-medium">Verification possible?</td>
-              <td className="py-3 px-5 text-red-600">Subjective only</td>
-              <td className="py-3 px-5 text-amber-600">Partial</td>
-              <td className="py-3 px-5 text-blue-600">Machine-checkable</td>
+              <td className="px-5 py-3 font-medium">Evidence quality</td>
+              <td className="px-5 py-3 text-red-600">Storytelling</td>
+              <td className="px-5 py-3 text-amber-600">Partial</td>
+              <td className="px-5 py-3 text-blue-600">Machine-checkable</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <div className="mt-8 bg-gray-900 text-white p-6 rounded-2xl">
+      <div className="mt-8 rounded-2xl bg-gray-900 p-6 text-white">
         <p className="text-gray-300">
-          Version A sounds most confident. Version C produces the most reviewable output. The difference is not model quality — it is instruction design.
+          The version that sounds the least impressive usually produces the most reviewable patch. That is not a bug.
+          That is the point.
         </p>
       </div>
     </div>
@@ -118,14 +109,14 @@ export function Chapter4_DesignEnvironment() {
 }
 
 function VersionBlock({
-  version,
+  badge,
   label,
   color,
   icon,
   prompt,
   note,
 }: {
-  version: string;
+  badge: string;
   label: string;
   color: 'red' | 'amber' | 'blue';
   icon: ReactNode;
@@ -134,42 +125,42 @@ function VersionBlock({
 }) {
   const colorMap = {
     red: {
-      header: 'bg-red-50 border-red-200 text-red-800',
+      header: 'border-red-200 bg-red-50 text-red-800',
       badge: 'bg-red-100 text-red-700',
       border: 'border-red-200',
-      note: 'bg-red-50 border-red-100 text-red-700',
+      note: 'border-red-100 bg-red-50 text-red-700',
     },
     amber: {
-      header: 'bg-amber-50 border-amber-200 text-amber-800',
+      header: 'border-amber-200 bg-amber-50 text-amber-800',
       badge: 'bg-amber-100 text-amber-700',
       border: 'border-amber-200',
-      note: 'bg-amber-50 border-amber-100 text-amber-700',
+      note: 'border-amber-100 bg-amber-50 text-amber-700',
     },
     blue: {
-      header: 'bg-blue-50 border-blue-200 text-blue-800',
+      header: 'border-blue-200 bg-blue-50 text-blue-800',
       badge: 'bg-blue-100 text-blue-700',
       border: 'border-blue-200',
-      note: 'bg-blue-50 border-blue-100 text-blue-700',
+      note: 'border-blue-100 bg-blue-50 text-blue-700',
     },
   };
-  const c = colorMap[color];
+  const styles = colorMap[color];
 
   return (
-    <div className={`bg-white border rounded-2xl overflow-hidden shadow-sm ${c.border}`}>
-      <div className={`px-5 py-4 border-b flex items-center gap-3 ${c.header} ${c.border}`}>
-        <span className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0 ${c.badge}`}>
-          {version}
+    <div className={`overflow-hidden rounded-2xl border bg-white shadow-sm ${styles.border}`}>
+      <div className={`flex items-center gap-3 border-b px-5 py-4 font-bold ${styles.header} ${styles.border}`}>
+        <span className={`flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold ${styles.badge}`}>
+          {badge}
         </span>
-        <div className="flex items-center gap-2 font-bold">
+        <div className="flex items-center gap-2">
           {icon}
           <span>{label}</span>
         </div>
       </div>
       <div className="p-5 sm:p-6">
-        <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg text-sm font-mono whitespace-pre-wrap leading-relaxed mb-4 overflow-x-auto">
+        <pre className="mb-4 overflow-x-auto rounded-lg bg-gray-900 p-4 font-mono text-sm leading-relaxed whitespace-pre-wrap text-gray-100">
           {prompt}
         </pre>
-        <p className={`text-sm rounded-lg p-3 border leading-relaxed ${c.note}`}>{note}</p>
+        <p className={`rounded-lg border p-3 text-sm leading-relaxed ${styles.note}`}>{note}</p>
       </div>
     </div>
   );
