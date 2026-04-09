@@ -227,8 +227,7 @@ export default function App() {
                 )}
                 <div
                   ref={navScrollRef}
-                  className="flex items-center gap-1 overflow-x-auto lg:gap-2 lg:text-sm"
-                  style={{ scrollbarWidth: 'none' }}
+                  className="scrollbar-none flex items-center gap-1 overflow-x-auto lg:gap-2 lg:text-sm"
                 >
                   {NAV_ITEMS.map(({ id, label }) => (
                     <button
