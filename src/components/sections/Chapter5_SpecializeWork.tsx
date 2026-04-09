@@ -1,5 +1,12 @@
 import { Wrench } from 'lucide-react';
 
+const typeColors = {
+  contract: 'bg-purple-100 text-purple-700',
+  debugging: 'bg-amber-100 text-amber-700',
+  docs: 'bg-green-100 text-green-700',
+  quality: 'bg-blue-100 text-blue-700',
+} as const;
+
 export function Chapter5_SpecializeWork() {
   return (
     <div id="chapter-5" className="scroll-mt-24 mb-16 sm:mb-24">
@@ -66,19 +73,13 @@ function ExampleCard({
   not: string;
   but: string;
   changed: string;
-  type: string;
+  type: keyof typeof typeColors;
 }) {
-  const typeColors: Record<string, string> = {
-    contract: 'bg-purple-100 text-purple-700',
-    debugging: 'bg-amber-100 text-amber-700',
-    docs: 'bg-green-100 text-green-700',
-    quality: 'bg-blue-100 text-blue-700',
-  };
 
   return (
     <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
       <div className="bg-gray-50 px-5 py-4 border-b border-gray-200 flex items-center gap-3">
-        <span className={`px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${typeColors[type] ?? 'bg-gray-100 text-gray-600'}`}>
+        <span className={`px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${typeColors[type]}`}>
           {type}
         </span>
         <h4 className="font-bold text-lg text-gray-900">{title}</h4>

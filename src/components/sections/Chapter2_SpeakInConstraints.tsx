@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { CheckCircle, Layers, Search, Database } from 'lucide-react';
 
 export function Chapter2_SpeakInConstraints() {
@@ -5,7 +6,7 @@ export function Chapter2_SpeakInConstraints() {
     <div id="chapter-2" className="scroll-mt-24 mb-16 sm:mb-24">
       <h2 className="flex items-center gap-3 text-2xl sm:text-3xl md:text-4xl font-bold mb-6 text-gray-900 tracking-tight">
         <Layers className="text-blue-600 w-8 h-8 sm:w-10 sm:h-10 flex-shrink-0" />
-        2. Why This Works
+        2. Why It Works
       </h2>
 
       <p className="mb-8 text-xl font-medium text-gray-800 leading-relaxed">
@@ -56,7 +57,7 @@ function MechanismCard({
   examples,
 }: {
   number: number;
-  icon: React.ReactNode;
+  icon: ReactNode;
   title: string;
   description: string;
   examples: string[];

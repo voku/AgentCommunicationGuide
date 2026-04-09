@@ -12,8 +12,8 @@ import { Chapter6_ReduceFriction } from './components/sections/Chapter6_ReduceFr
 const NAV_ITEMS = [
   { id: 'chapter-1', label: '1. The Shift' },
   { id: 'chapter-2', label: '2. Why It Works' },
-  { id: 'chapter-3', label: '3. Core Patterns' },
-  { id: 'chapter-4', label: '4. In Practice' },
+  { id: 'chapter-3', label: '3. How to Speak' },
+  { id: 'chapter-4', label: '4. Three Instructions' },
   { id: 'chapter-5', label: '5. Real Examples' },
   { id: 'chapter-6', label: '6. Advanced' }
 ];

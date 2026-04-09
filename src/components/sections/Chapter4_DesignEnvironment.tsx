@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { FlaskConical, XCircle, AlertTriangle, CheckCircle } from 'lucide-react';
 
 export function Chapter4_DesignEnvironment() {
@@ -127,7 +128,7 @@ function VersionBlock({
   version: string;
   label: string;
   color: 'red' | 'amber' | 'blue';
-  icon: React.ReactNode;
+  icon: ReactNode;
   prompt: string;
   note: string;
 }) {

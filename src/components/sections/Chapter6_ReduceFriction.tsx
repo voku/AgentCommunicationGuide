@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { Settings, CheckCircle, XCircle } from 'lucide-react';
 
 export function Chapter6_ReduceFriction() {
@@ -175,7 +176,7 @@ export function Chapter6_ReduceFriction() {
   );
 }
 
-function AdvancedSection({ title, children }: { title: string; children: React.ReactNode }) {
+function AdvancedSection({ title, children }: { title: string; children: ReactNode }) {
   return (
     <section>
       <h3 className="text-xl font-bold text-gray-900 mb-4 pb-2 border-b border-gray-100">{title}</h3>
