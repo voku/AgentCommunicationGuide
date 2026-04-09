@@ -1,4 +1,4 @@
-import { FileCheck, FileStack, Files, NotebookPen, Scale } from 'lucide-react';
+import { FileCheck, FileStack, Files, NotebookPen, Scale, Terminal } from 'lucide-react';
 
 const RULES = [
   {
@@ -12,6 +12,12 @@ const RULES = [
     title: 'Skills or reusable workflows',
     summary: 'Store detailed process here, not in every chat.',
     detail: 'How to write tests, how to structure migrations, how to release, how to debug a flaky integration test — that belongs in reusable workflow files.',
+  },
+  {
+    icon: Terminal,
+    title: 'Makefiles',
+    summary: 'Expose battle-tested commands behind stable targets.',
+    detail: 'Put targets like make test, make lint, and make build in the repository so agents and developers run the same documented commands instead of inventing their own.',
   },
   {
     icon: NotebookPen,
