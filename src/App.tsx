@@ -9,7 +9,20 @@ import { Chapter4_DesignEnvironment } from './components/sections/Chapter4_Desig
 import { Chapter5_SpecializeWork } from './components/sections/Chapter5_SpecializeWork';
 import { Chapter6_ReduceFriction } from './components/sections/Chapter6_ReduceFriction';
 
-const NAV_ITEMS = [
+import { Prompt1_NoLongerTheStar } from './components/prompts/Prompt1_NoLongerTheStar';
+import { Prompt2_ThreeTypesOfPrompts } from './components/prompts/Prompt2_ThreeTypesOfPrompts';
+import { Prompt3_AntiAnchoringTrick } from './components/prompts/Prompt3_AntiAnchoringTrick';
+import { Prompt4_AskForProof } from './components/prompts/Prompt4_AskForProof';
+import { Prompt5_PreventHallucination } from './components/prompts/Prompt5_PreventHallucination';
+import { Prompt6_ForceRootCause } from './components/prompts/Prompt6_ForceRootCause';
+import { Prompt7_RepositoryAnchors } from './components/prompts/Prompt7_RepositoryAnchors';
+import { Prompt8_StopIfStuck } from './components/prompts/Prompt8_StopIfStuck';
+import { Prompt9_PromptsShouldShrink } from './components/prompts/Prompt9_PromptsShouldShrink';
+import { Prompt10_OneSentenceConclusion } from './components/prompts/Prompt10_OneSentenceConclusion';
+
+type View = 'systems' | 'prompts';
+
+const SYSTEMS_NAV_ITEMS = [
   { id: 'chapter-1', label: '1. The real problem' },
   { id: 'chapter-2', label: '2. Why constraints win' },
   { id: 'chapter-3', label: '3. Put rules in files' },
@@ -18,11 +31,33 @@ const NAV_ITEMS = [
   { id: 'chapter-6', label: '6. Practical rules' },
 ];
 
+const PROMPTS_NAV_ITEMS = [
+  { id: 'prompt-1', label: '1. No longer the star' },
+  { id: 'prompt-2', label: '2. Three types' },
+  { id: 'prompt-3', label: '3. Anti-anchoring' },
+  { id: 'prompt-4', label: '4. Ask for proof' },
+  { id: 'prompt-5', label: '5. No hallucination' },
+  { id: 'prompt-6', label: '6. Root cause' },
+  { id: 'prompt-7', label: '7. Repo anchors' },
+  { id: 'prompt-8', label: '8. Stop if stuck' },
+  { id: 'prompt-9', label: '9. Prompts shrink' },
+  { id: 'prompt-10', label: '10. One sentence' },
+];
+
 export default function App() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState('chapter-1');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [view, setView] = useState<View>('systems');
   const assetBase = import.meta.env.BASE_URL;
+
+  const NAV_ITEMS = view === 'systems' ? SYSTEMS_NAV_ITEMS : PROMPTS_NAV_ITEMS;
+
+  useEffect(() => {
+    const defaultSection = view === 'systems' ? 'chapter-1' : 'prompt-1';
+    setActiveSection(defaultSection);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [view]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -58,7 +93,7 @@ export default function App() {
       window.removeEventListener('scroll', handleScroll);
       observer.disconnect();
     };
-  }, []);
+  }, [NAV_ITEMS]);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -97,6 +132,7 @@ export default function App() {
                 <div className="text-[10px] font-medium uppercase tracking-widest text-gray-500 sm:text-xs">
                   2026 Edition
                 </div>
+                <ViewToggle view={view} onToggle={setView} />
                 <button
                   onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                   className="rounded-md p-2 text-gray-600 hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
@@ -112,6 +148,8 @@ export default function App() {
               aria-label="Table of contents"
               className="hidden items-center justify-end gap-1 text-xs font-medium text-gray-600 md:flex lg:gap-2 lg:text-sm"
             >
+              <ViewToggle view={view} onToggle={setView} />
+              <div className="mx-1 h-4 w-px bg-gray-200" />
               {NAV_ITEMS.map(({ id, label }) => (
                 <button
                   key={id}
@@ -168,39 +206,81 @@ export default function App() {
 
         <main className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12 md:py-20">
           <article className="prose prose-base prose-blue max-w-none sm:prose-lg">
-            <div className="relative mb-12 overflow-hidden rounded-3xl bg-gray-950 shadow-2xl sm:mb-16">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.35),_transparent_35%),radial-gradient(circle_at_bottom_right,_rgba(14,165,233,0.25),_transparent_30%)]" />
-              <div className="absolute -left-12 top-10 h-40 w-40 rounded-full bg-blue-500/20 blur-3xl" />
-              <div className="absolute -right-10 bottom-8 h-40 w-40 rounded-full bg-cyan-400/20 blur-3xl" />
+            {view === 'systems' ? (
+              <>
+                <div className="relative mb-12 overflow-hidden rounded-3xl bg-gray-950 shadow-2xl sm:mb-16">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.35),_transparent_35%),radial-gradient(circle_at_bottom_right,_rgba(14,165,233,0.25),_transparent_30%)]" />
+                  <div className="absolute -left-12 top-10 h-40 w-40 rounded-full bg-blue-500/20 blur-3xl" />
+                  <div className="absolute -right-10 bottom-8 h-40 w-40 rounded-full bg-cyan-400/20 blur-3xl" />
 
-              <div className="relative z-10 px-6 py-12 text-center sm:py-20">
-                <p className="mb-4 text-xs font-semibold uppercase tracking-[0.35em] text-blue-200">
-                  battle-tested engineering advice
-                </p>
-                <h1 className="mb-6 font-serif text-4xl font-bold leading-tight tracking-tight text-white drop-shadow-lg sm:text-5xl md:text-6xl">
-                  Stop Writing Better Prompts.
-                  <br />
-                  Build Better Systems.
-                </h1>
-                <p className="mx-auto max-w-2xl text-xl font-light leading-relaxed text-blue-100 drop-shadow sm:text-2xl">
-                  Reliable agent output comes from tests, static analysis, CI, repository structure, and specs — not
-                  from prompt poetry.
-                </p>
-              </div>
-            </div>
+                  <div className="relative z-10 px-6 py-12 text-center sm:py-20">
+                    <p className="mb-4 text-xs font-semibold uppercase tracking-[0.35em] text-blue-200">
+                      battle-tested engineering advice
+                    </p>
+                    <h1 className="mb-6 font-serif text-4xl font-bold leading-tight tracking-tight text-white drop-shadow-lg sm:text-5xl md:text-6xl">
+                      Stop Writing Better Prompts.
+                      <br />
+                      Build Better Systems.
+                    </h1>
+                    <p className="mx-auto max-w-2xl text-xl font-light leading-relaxed text-blue-100 drop-shadow sm:text-2xl">
+                      Reliable agent output comes from tests, static analysis, CI, repository structure, and specs — not
+                      from prompt poetry.
+                    </p>
+                  </div>
+                </div>
 
-            <Chapter1_PromptEngineeringOver />
-            <Chapter2_SpeakInConstraints />
-            <Chapter3_CompressIntent />
-            <Chapter4_DesignEnvironment />
-            <Chapter5_SpecializeWork />
-            <Chapter6_ReduceFriction />
+                <Chapter1_PromptEngineeringOver />
+                <Chapter2_SpeakInConstraints />
+                <Chapter3_CompressIntent />
+                <Chapter4_DesignEnvironment />
+                <Chapter5_SpecializeWork />
+                <Chapter6_ReduceFriction />
+              </>
+            ) : (
+              <>
+                <div className="relative mb-12 overflow-hidden rounded-3xl bg-gray-950 shadow-2xl sm:mb-16">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(99,102,241,0.35),_transparent_35%),radial-gradient(circle_at_bottom_right,_rgba(168,85,247,0.25),_transparent_30%)]" />
+                  <div className="absolute -left-12 top-10 h-40 w-40 rounded-full bg-violet-500/20 blur-3xl" />
+                  <div className="absolute -right-10 bottom-8 h-40 w-40 rounded-full bg-purple-400/20 blur-3xl" />
+
+                  <div className="relative z-10 px-6 py-12 text-center sm:py-20">
+                    <p className="mb-4 text-xs font-semibold uppercase tracking-[0.35em] text-violet-200">
+                      battle-tested engineering advice
+                    </p>
+                    <h1 className="mb-6 font-serif text-4xl font-bold leading-tight tracking-tight text-white drop-shadow-lg sm:text-5xl md:text-6xl">
+                      Stop Writing Clever Prompts.
+                      <br />
+                      Start Writing Operational Prompts.
+                    </h1>
+                    <p className="mx-auto max-w-2xl text-xl font-light leading-relaxed text-violet-100 drop-shadow sm:text-2xl">
+                      Reliable coding agents do not need inspiring paragraphs. They need instructions that survive
+                      execution.
+                    </p>
+                  </div>
+                </div>
+
+                <Prompt1_NoLongerTheStar />
+                <Prompt2_ThreeTypesOfPrompts />
+                <Prompt3_AntiAnchoringTrick />
+                <Prompt4_AskForProof />
+                <Prompt5_PreventHallucination />
+                <Prompt6_ForceRootCause />
+                <Prompt7_RepositoryAnchors />
+                <Prompt8_StopIfStuck />
+                <Prompt9_PromptsShouldShrink />
+                <Prompt10_OneSentenceConclusion />
+              </>
+            )}
           </article>
         </main>
 
         <footer className="bg-gray-900 py-12 text-center text-sm text-gray-400">
           <p>suckup.de © 2026</p>
-          <p className="mt-2 text-gray-500">The prompt should be small. The system is doing the real work.</p>
+          <p className="mt-2 text-gray-500">
+            {view === 'systems'
+              ? 'The prompt should be small. The system is doing the real work.'
+              : 'Prompts still matter — but only when they encode constraints, not personality.'}
+          </p>
           <p className="mt-4">
             <a
               href="https://github.com/voku/AgentCommunicationGuide"
@@ -214,5 +294,30 @@ export default function App() {
         </footer>
       </div>
     </LazyMotion>
+  );
+}
+
+function ViewToggle({ view, onToggle }: { view: View; onToggle: (v: View) => void }) {
+  return (
+    <div className="flex items-center gap-0.5 rounded-full border border-gray-200 bg-gray-100 p-0.5 text-xs font-medium">
+      <button
+        onClick={() => onToggle('systems')}
+        aria-pressed={view === 'systems'}
+        className={`rounded-full px-2.5 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 ${
+          view === 'systems' ? 'bg-white text-blue-700 shadow-sm' : 'text-gray-500 hover:text-gray-800'
+        }`}
+      >
+        Systems
+      </button>
+      <button
+        onClick={() => onToggle('prompts')}
+        aria-pressed={view === 'prompts'}
+        className={`rounded-full px-2.5 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 ${
+          view === 'prompts' ? 'bg-white text-violet-700 shadow-sm' : 'text-gray-500 hover:text-gray-800'
+        }`}
+      >
+        Prompts
+      </button>
+    </div>
   );
 }
