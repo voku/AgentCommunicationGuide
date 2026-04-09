@@ -11,11 +11,11 @@ import { Chapter6_ReduceFriction } from './components/sections/Chapter6_ReduceFr
 
 const NAV_ITEMS = [
   { id: 'chapter-1', label: '1. The Shift' },
-  { id: 'chapter-2', label: '2. Constraints' },
-  { id: 'chapter-3', label: '3. Compress Intent' },
-  { id: 'chapter-4', label: '4. Environment' },
-  { id: 'chapter-5', label: '5. Specialization' },
-  { id: 'chapter-6', label: '6. Friction' }
+  { id: 'chapter-2', label: '2. Why It Works' },
+  { id: 'chapter-3', label: '3. How to Speak' },
+  { id: 'chapter-4', label: '4. Three Instructions' },
+  { id: 'chapter-5', label: '5. Real Examples' },
+  { id: 'chapter-6', label: '6. Advanced' }
 ];
 
 export default function App() {
@@ -192,7 +192,7 @@ export default function App() {
       
       <footer className="bg-gray-900 text-gray-400 py-12 text-center text-sm">
         <p>Agentic Patterns © 2026</p>
-        <p className="mt-2 text-gray-500">The future of AI-assisted development is not better prompt poetry. It's better engineering systems.</p>
+        <p className="mt-2 text-gray-500">The prompt is the trigger. The system does the rest.</p>
         <p className="mt-4">
           <a
             href="https://github.com/voku/AgentCommunicationGuide"
