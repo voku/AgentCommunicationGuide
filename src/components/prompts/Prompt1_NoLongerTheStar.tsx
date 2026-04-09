@@ -7,37 +7,54 @@ export function Prompt1_NoLongerTheStar() {
       </div>
 
       <h2 className="mb-6 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl md:text-4xl">
-        1. The Prompt Is No Longer the Star
+        1. The Core Mistake: Personality Instead of Boundaries
       </h2>
 
       <p className="mb-6 text-lg font-medium leading-relaxed text-gray-800 sm:text-xl">
-        Early AI workflows focused heavily on prompt engineering. The story was seductive: write a better paragraph and
-        the model will write better code.
+        Reliable coding agents do not need inspiring paragraphs. They need instructions that survive execution.
       </p>
 
-      <p className="mb-6 leading-relaxed text-gray-700">
-        Developers wrote elaborate instructions like this:
-      </p>
+      <p className="mb-6 leading-relaxed text-gray-700">Old prompt engineering tried to simulate expertise:</p>
 
-      <pre className="mb-6 overflow-x-auto rounded-lg bg-gray-900 p-4 font-mono text-sm leading-relaxed whitespace-pre-wrap text-gray-100">
+      <pre className="mb-6 overflow-x-auto whitespace-pre-wrap rounded-lg bg-gray-900 p-4 font-mono text-sm leading-relaxed text-gray-100">
         {`You are an expert senior software engineer.
 Write clean, scalable, maintainable code.
 Follow best practices and think step by step.`}
       </pre>
 
       <p className="mb-6 leading-relaxed text-gray-700">
-        It sounded serious. It also constrained almost nothing. The model could still change APIs, rewrite half the
-        repository, skip regression tests, invent patterns, and violate project rules — and then explain confidently why
-        it did.
+        That sounds serious and constrains almost nothing. The model can still change APIs, skip verification, drift
+        into unrelated files, and then confidently narrate the detour.
       </p>
 
       <div className="my-10 rounded-r-2xl border-l-4 border-blue-600 bg-blue-50 p-6 shadow-sm sm:p-8">
-        <h3 className="mb-3 text-sm font-bold uppercase tracking-wider text-blue-900">The core mistake</h3>
+        <h3 className="mb-3 text-sm font-bold uppercase tracking-wider text-blue-900">The actual shift</h3>
         <p className="mb-3 text-2xl font-semibold leading-tight text-blue-800 sm:text-3xl">
-          Most prompts described personality instead of boundaries.
+          Good prompts allocate attention, constrain behavior, demand proof, and control stopping conditions.
         </p>
-        <p className="text-lg text-blue-700">Operational prompts describe constraints.</p>
+        <p className="text-lg text-blue-700">
+          Strong coding-agent prompts work best when they define the task clearly, give the right context, constrain
+          behavior, and make done observable.
+        </p>
       </div>
+
+      <div className="grid gap-4 md:grid-cols-2">
+        {[
+          'what the task is',
+          'what must not change',
+          'what evidence is required',
+          'when the work is done',
+        ].map((item) => (
+          <div key={item} className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+            <p className="font-medium text-gray-800">{item}</p>
+          </div>
+        ))}
+      </div>
+
+      <p className="mt-8 leading-relaxed text-gray-700">
+        That also lines up with the current agent loop: plan, edit, run tools, observe, repair, repeat. The prompt
+        should frame the loop, not impersonate the engineer.
+      </p>
     </div>
   );
 }
