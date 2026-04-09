@@ -64,7 +64,9 @@ export function Prompt4_AskForProof() {
 
       <div className="grid gap-6 xl:grid-cols-2">
         {PATTERNS.map((pattern) => (
-          <PromptPatternCard key={pattern.title} {...pattern} />
+          <div key={pattern.title}>
+            <PromptPatternCard title={pattern.title} bad={pattern.bad} best={pattern.best} why={pattern.why} />
+          </div>
         ))}
       </div>
     </div>
