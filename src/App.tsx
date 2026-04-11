@@ -54,7 +54,7 @@ const PROMPTS_NAV_ITEMS = [
   { id: 'prompt-10', label: '10. Vague words' },
   { id: 'prompt-11', label: '11. Double-check' },
   { id: 'prompt-12', label: '12. Deletion & scope' },
-  { id: 'prompt-13', label: '13. Momentum & gaps' },
+  { id: 'prompt-13', label: '13. Momentum & expansion' },
   { id: 'prompt-14', label: '14. Verify with tests' },
 ];
 
