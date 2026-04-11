@@ -44,7 +44,7 @@ export function Prompt14_VerifyWithTests() {
               label: 'Best',
               tone: 'blue',
               content:
-                'Add the feature as planned, but start with a TDD approach.\nBegin with a failing test, then implement only enough code to pass it, and keep iterating until the task reaches the definition of done from your custom instructions.',
+                'Add the feature as planned, but start with a TDD approach.\nBegin with a failing test, then implement only enough code to pass it, and keep iterating until the task meets its acceptance criteria or definition of done.',
             },
           ]}
           note="This prompt does not just ask for tests at the end. It makes the test suite drive the implementation order, which reduces speculative code and forces progress to stay measurable."
@@ -81,7 +81,7 @@ export function Prompt14_VerifyWithTests() {
               label: 'Best',
               tone: 'blue',
               content:
-                'The code already exists. Add unit tests with the mindset that good tests should discover regressions in the codebase.\nKeep adding tests until you expose real broken assumptions, missing edge cases, or behavior drift — otherwise you are only testing the happy path.',
+                'The code already exists. Add unit tests with the mindset that good tests should discover regressions in the codebase.\nKeep adding tests until you expose real broken assumptions, missing edge cases, or behavior drift; otherwise you are only testing the happy path.',
             },
           ]}
           note="Regression-seeking prompts push the agent past shallow coverage. The goal is to find where reality disagrees with expectations, not to produce a comforting number of passing tests."
