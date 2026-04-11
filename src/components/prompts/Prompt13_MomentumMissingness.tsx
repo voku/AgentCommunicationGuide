@@ -14,7 +14,7 @@ export function Prompt13_MomentumMissingness() {
 
       <div className="space-y-6">
         <PromptExampleStack
-          title='"Use this momentum" — capture patterns before they disappear'
+          title='"Use this momentum" — carry a verified pattern through the next chapter'
           entries={[
             {
               label: 'Bad',
@@ -26,10 +26,10 @@ export function Prompt13_MomentumMissingness() {
               label: 'Best',
               tone: 'blue',
               content:
-                'Now that we established how unit tests should look in this project,\nuse this momentum and write the conventions down as a reusable skill.\nInclude: file location, naming pattern, assertion style, and what not to mock.',
+                'We now validated the PHP 8.5 feature-set chapter for this blog post.\nUse this momentum to walk backward version by version until PHP 5.3.\nFor each PHP version, check which features still matter when analyzing older code with this library, note what changes, then confirm the chapter to yourself before moving on.\nStay in auto-agent mode and continue until every version from PHP 5.3 through PHP 8.5 is either covered or explicitly flagged as a gap.',
             },
           ]}
-          note="Good results left in a single session are wasted. Momentum-capture prompts convert a one-off win into a reusable pattern the next agent session can reload instantly."
+          note="Momentum prompts are not just for saving patterns. They also keep the agent moving through long, repetitive work by reusing the last verified structure, adding local context, and defining the next checkpoint."
         />
 
         <PromptExampleStack
