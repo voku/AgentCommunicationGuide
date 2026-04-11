@@ -20,7 +20,7 @@ export function Chapter6_ReduceFriction() {
               { label: 'Prompt', sub: 'what you want' },
               { label: 'Spec / TODO', sub: 'written intent, open questions' },
               { label: 'Implementation', sub: 'code changes scoped to the spec' },
-              { label: 'Validators', sub: 'tests · static analysis · build' },
+              { label: 'Validators', sub: 'tests · mutation checks · static analysis · build' },
               { label: 'CI', sub: 'merge gate — machine-checkable done' },
             ].map((step, i, arr) => (
               <div key={step.label} className="flex flex-col items-start">
@@ -51,9 +51,10 @@ export function Chapter6_ReduceFriction() {
             <li>2. Put reusable workflows in skills or dedicated process docs.</li>
             <li>3. Put acceptance criteria and open questions in the spec.</li>
             <li>4. Require a regression test for every behavioral change.</li>
-            <li>5. Run static analysis at the strictest level your project can sustain.</li>
-            <li>6. Fail CI if tests, static analysis, or build checks fail.</li>
-            <li>7. Prefer raw validator output over friendly summaries.</li>
+            <li>5. Verify important tests are mutation-sensitive before treating them as complete.</li>
+            <li>6. Run static analysis at the strictest level your project can sustain.</li>
+            <li>7. Fail CI if tests, static analysis, or build checks fail.</li>
+            <li>8. Prefer raw validator output over friendly summaries.</li>
           </ol>
         </div>
       </AdvancedSection>
@@ -80,6 +81,7 @@ export function Chapter6_ReduceFriction() {
               <li>Do not accept “all green” without the actual output.</li>
               <li>Do not let the model guess missing intent when the spec is silent.</li>
               <li>Do not treat generated code as correct just because it sounds confident.</li>
+              <li>Do not treat a passing test as sufficient evidence until it has survived a mutation.</li>
             </ul>
           </div>
         </div>
@@ -91,7 +93,7 @@ export function Chapter6_ReduceFriction() {
           Prompt engineering still matters a little. But it is no longer where the leverage is.
         </p>
         <p className="mb-5 leading-relaxed text-gray-700">
-          Real software systems do not run on prompts. They run on tests, static analysis, CI pipelines, repository
+          Real software systems do not run on prompts. They run on tests, mutation checks, static analysis, CI pipelines, repository
           conventions, and reproducible workflows.
         </p>
         <div className="rounded-2xl bg-gray-900 p-8 text-center text-white shadow-xl">
