@@ -72,7 +72,7 @@ export function Prompt13_MomentumMissingness() {
               label: 'Best',
               tone: 'blue',
               content:
-                'Take the result you already have and expand it one level further.\n\nDo not rewrite from scratch. Reuse the current structure, wording, files, and constraints.\n\nMake the next pass larger, more complete, or more general, but stay in the same direction.\n\nWork in small steps. After each step:\n  • check that the previous result still holds\n  • extend it without drifting\n  • continue automatically until the natural next boundary is reached\n\nDo not stop at the first acceptable version. Push it one level further.',
+                'Do it step by step and ask for confirmation after each [placeholder],\nbut ask yourselves for confirmation and run in auto agent mode\nuntil you reached [the point of done as defined in your custom instructions].',
             },
           ]}
           noteTitle="Why it works"
