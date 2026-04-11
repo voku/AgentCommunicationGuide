@@ -33,6 +33,24 @@ export function Prompt14_VerifyWithTests() {
         />
 
         <PromptExampleStack
+          title="Start planned feature work with TDD"
+          entries={[
+            {
+              label: 'Weak',
+              tone: 'amber',
+              content: 'Add the feature as planned.\nRun tests when you are done.',
+            },
+            {
+              label: 'Best',
+              tone: 'blue',
+              content:
+                'Add the feature as planned, but start with a TDD approach.\nBegin with a failing test, then implement only enough code to pass it, and keep iterating until the task reaches the definition of done from your custom instructions.',
+            },
+          ]}
+          note="This prompt does not just ask for tests at the end. It makes the test suite drive the implementation order, which reduces speculative code and forces progress to stay measurable."
+        />
+
+        <PromptExampleStack
           title="Correct the code, not the test"
           entries={[
             {
@@ -49,6 +67,24 @@ export function Prompt14_VerifyWithTests() {
             },
           ]}
           note="Changing tests to silence failures is a common agent failure mode. This prompt locks the test as the source of truth and forces the agent to fix the actual problem."
+        />
+
+        <PromptExampleStack
+          title="Add tests that hunt for regressions"
+          entries={[
+            {
+              label: 'Weak',
+              tone: 'amber',
+              content: 'Add unit tests for the existing code.',
+            },
+            {
+              label: 'Best',
+              tone: 'blue',
+              content:
+                'The code already exists. Add unit tests with the mindset that good tests should discover regressions in the codebase.\nKeep adding tests until you expose real broken assumptions, missing edge cases, or behavior drift — otherwise you are only testing the happy path.',
+            },
+          ]}
+          note="Regression-seeking prompts push the agent past shallow coverage. The goal is to find where reality disagrees with expectations, not to produce a comforting number of passing tests."
         />
       </div>
 
