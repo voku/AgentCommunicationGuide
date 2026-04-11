@@ -53,9 +53,10 @@ export function Chapter4_DesignEnvironment() {
           prompt={`1. Identify the root cause before changing code.
 2. Keep the public API of UserAccountService unchanged.
 3. Add a PHPUnit test that fails before the fix and passes after.
-4. Run PHPStan at max level. Do not add ignores.
-5. Paste the raw test and static analysis output.`}
-          note="Five lines. No marketing language. Just boundaries, tooling, and evidence. That is the version I trust in a real repository."
+4. Run a minimal mutation in the fix. Confirm the test catches it.
+5. Run PHPStan at max level. Do not add ignores.
+6. Paste the raw test and static analysis output.`}
+          note="Six lines. No marketing language. Just boundaries, tooling, and evidence — including a mutation check to confirm the new test actually validates real behavior. That is the version I trust in a real repository."
         />
       </div>
 
@@ -102,6 +103,12 @@ export function Chapter4_DesignEnvironment() {
               <td className="bg-red-50/40 px-5 py-3 text-red-700">Ignored</td>
               <td className="bg-amber-50/40 px-5 py-3 text-amber-700">Easy to skip</td>
               <td className="bg-blue-50/40 px-5 py-3 font-medium text-blue-700">Part of done</td>
+            </tr>
+            <tr className="hover:bg-gray-50">
+              <td className="px-5 py-3 font-medium text-gray-900">Test quality check</td>
+              <td className="bg-red-50/40 px-5 py-3 text-red-700">Absent</td>
+              <td className="bg-amber-50/40 px-5 py-3 text-amber-700">Absent</td>
+              <td className="bg-blue-50/40 px-5 py-3 font-medium text-blue-700">Mutation-verified</td>
             </tr>
             <tr className="hover:bg-gray-50">
               <td className="px-5 py-3 font-medium text-gray-900">Evidence quality</td>

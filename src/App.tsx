@@ -10,7 +10,6 @@ import { Chapter3_CompressIntent } from './components/sections/Chapter3_Compress
 import { Chapter4_DesignEnvironment } from './components/sections/Chapter4_DesignEnvironment';
 import { Chapter5_SpecializeWork } from './components/sections/Chapter5_SpecializeWork';
 import { Chapter6_ReduceFriction } from './components/sections/Chapter6_ReduceFriction';
-import { Chapter7_MutationTesting } from './components/sections/Chapter7_MutationTesting';
 
 import { Prompt1_NoLongerTheStar } from './components/prompts/Prompt1_NoLongerTheStar';
 import { Prompt2_ThreeTypesOfPrompts } from './components/prompts/Prompt2_ThreeTypesOfPrompts';
@@ -40,7 +39,6 @@ const SYSTEMS_NAV_ITEMS = [
   { id: 'chapter-4', label: '4. Same task, better system' },
   { id: 'chapter-5', label: '5. What fails in practice' },
   { id: 'chapter-6', label: '6. Practical rules' },
-  { id: 'chapter-7', label: '7. Mutation testing' },
 ];
 
 const PROMPTS_NAV_ITEMS = [
@@ -240,7 +238,6 @@ export default function App() {
                     <Chapter4_DesignEnvironment />
                     <Chapter5_SpecializeWork />
                     <Chapter6_ReduceFriction />
-                    <Chapter7_MutationTesting />
                   </>
                 ) : (
                   <>

@@ -17,8 +17,8 @@ export function Chapter2_SpeakInConstraints() {
         <MechanismCard
           icon={<CheckCircle className="h-6 w-6 text-blue-600" />}
           title="They survive the session"
-          description="A good prompt is gone as soon as the conversation ends. A failing PHPUnit test, a PHPStan rule, or a blocked CI pipeline is still there tomorrow. That is the difference between advice and engineering."
-          examples={['PHPUnit regression test', 'PHPStan on max level', 'CI gate that blocks the merge']}
+          description="A good prompt is gone as soon as the conversation ends. A failing PHPUnit test, a PHPStan rule, a mutation-sensitive test suite, or a blocked CI pipeline is still there tomorrow. That is the difference between advice and engineering."
+          examples={['PHPUnit regression test', 'PHPStan on max level', 'Mutation check on key tests', 'CI gate that blocks the merge']}
         />
         <MechanismCard
           icon={<Search className="h-6 w-6 text-blue-600" />}
