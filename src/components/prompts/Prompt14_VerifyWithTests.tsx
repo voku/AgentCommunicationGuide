@@ -105,6 +105,24 @@ export function Prompt14_VerifyWithTests() {
           ]}
           note="Regression-seeking prompts push the agent past shallow coverage. The goal is to find where reality disagrees with expectations, not to produce a comforting number of passing tests."
         />
+
+        <PromptExampleStack
+          title="Combined example — raise the bar for coverage"
+          entries={[
+            {
+              label: 'Weak',
+              tone: 'amber',
+              content: 'Please add some more tests.',
+            },
+            {
+              label: 'Best',
+              tone: 'blue',
+              content:
+                'Expand the current tests until a skeptical maintainer would accept the coverage.\nKeep pushing past the happy path.\nYour tests should expose at least one real issue, missing edge case, or broken assumption; otherwise keep extending the suite.\nIf a new test fails, fix the code instead of weakening the assertion.\nReport what issue you found or which risk area you closed.',
+            },
+          ]}
+          note="This works better than “please add some more tests” because it defines the quality bar, the stopping condition, and the purpose of the tests. The agent is told to hunt for a real mismatch with reality, not to stop after producing a few polite passing checks."
+        />
       </div>
 
       <div className="mt-8 rounded-r-2xl border-l-4 border-violet-500 bg-violet-50 p-5 text-sm text-violet-900 shadow-sm sm:p-6">
