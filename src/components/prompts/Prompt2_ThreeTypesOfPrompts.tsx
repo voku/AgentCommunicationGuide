@@ -60,7 +60,7 @@ Done when: Add one regression test that fails before the fix and passes after, P
 
       <div className="rounded-r-2xl border-l-4 border-blue-600 bg-blue-50 p-6 shadow-sm sm:p-8">
         <p className="text-lg font-semibold text-blue-800">
-          This is the reusable pattern the article should teach directly: goal, context, constraints, and done when.
+          This four-part shape is reusable because it survives handoffs, retries, and tool execution.
         </p>
       </div>
     </div>

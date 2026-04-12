@@ -4,44 +4,50 @@ export function Prompt7_AttentionSteering() {
   return (
     <div id="prompt-7" className="mb-16 scroll-mt-24 sm:mb-24">
       <h2 className="mb-6 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl md:text-4xl">
-        7. Attention-Steering Prompts
+        7. Planning Prompts: Decide Before You Execute
       </h2>
 
       <p className="mb-8 text-xl font-medium leading-relaxed text-gray-800">
-        Good prompting is often less about adding context and more about steering attention toward the few signals that
-        matter.
+        Hard tasks do better when the prompt decides whether the agent should execute immediately or plan first.
       </p>
 
       <div className="space-y-6">
         <PromptExampleStack
-          title="Limit the search space"
+          title="Deterministic mode"
           entries={[
             {
-              label: 'Best',
+              label: 'Prompt',
               tone: 'blue',
-              content:
-                'Focus only on src/UserAccountService.php and tests/Unit/UserAccountServiceTest.php.\nIgnore unrelated modules unless you find direct evidence they are involved.',
+              content: 'Implement the spec.\nRun tests.\nFix all findings.',
             },
           ]}
-          note="This stops the agent from burning time in unrelated files just because they are available."
+          note="Use this when the path is already known and the agent should just execute the checklist."
         />
 
         <PromptExampleStack
-          title="Point to the pattern source"
+          title="Exploration mode"
           entries={[
             {
-              label: 'Best',
-              tone: 'blue',
-              content: 'Use AbstractValueObject and the existing immutable classes as the pattern source.',
+              label: 'Prompt',
+              tone: 'emerald',
+              content: 'Explore three alternative implementations.\nEvaluate tradeoffs.\nDo not code yet.',
             },
           ]}
-          note="A pattern source tells the model exactly which examples deserve its attention."
+          note="This forces the agent to widen the option set before it starts editing files."
+        />
+
+        <PromptExampleStack
+          title="Unknown work"
+          entries={[
+            {
+              label: 'Prompt',
+              tone: 'amber',
+              content: 'Do not implement yet.\nFirst gather context, identify unknowns, and propose a short execution plan.',
+            },
+          ]}
+          note="Plan-first prompts are especially useful when the task is vague, risky, or cross-cutting."
         />
       </div>
-
-      <p className="mt-8 leading-relaxed text-gray-700">
-        This is not more context. It is better-targeted attention.
-      </p>
     </div>
   );
 }
