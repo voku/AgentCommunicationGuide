@@ -72,7 +72,7 @@ export function Prompt13_MomentumMissingness() {
               label: 'Best',
               tone: 'blue',
               content:
-                'Do it step by step and move through one meaningful checkpoint at a time.\nAfter each checkpoint, validate the result yourself and use that validation as the confirmation signal.\nStay in auto-agent mode and keep expanding the work until the documented definition of done is fully reached.',
+                'Do it step by step and ask for confirmation after each [placeholder],\nbut ask yourselves for confirmation and run in auto agent mode\nuntil you reached [the point of done as defined in your custom instructions].',
             },
           ]}
           noteTitle="Why it works"

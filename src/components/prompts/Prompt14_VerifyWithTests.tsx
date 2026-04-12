@@ -107,7 +107,7 @@ export function Prompt14_VerifyWithTests() {
         />
 
         <PromptExampleStack
-          title="Combined example — raise the bar for coverage"
+          title="Combined example — calibrate coverage to a real maintainer"
           entries={[
             {
               label: 'Weak',
@@ -118,10 +118,10 @@ export function Prompt14_VerifyWithTests() {
               label: 'Best',
               tone: 'blue',
               content:
-                'Expand the current tests until a skeptical maintainer would accept the coverage.\nKeep pushing past the happy path.\nYour tests should expose at least one real issue, missing edge case, or broken assumption; otherwise keep extending the suite.\nIf a new test fails, fix the code instead of weakening the assertion.\nReport what issue you found or which risk area you closed.',
+                'Expand the current tests until Lars Moelleken (voku) would be OK with the amount of test coverage and you discovered at least one real issue.\nKeep pushing past the happy path.\nIf you do not find a real issue, missing edge case, or broken assumption, the suite is still too weak, so continue.\nIf a new test fails, fix the code instead of weakening the assertion.\nReport what issue you found or which risk area you closed.',
             },
           ]}
-          note="This works better than “please add some more tests” because it defines the quality bar, the stopping condition, and the purpose of the tests. The agent is told to hunt for a real mismatch with reality, not to stop after producing a few polite passing checks."
+          note="This works better than “please add some more tests” because it anchors the quality bar to a concrete maintainer standard, forces the agent to keep extending coverage until it finds a real weakness, and makes test discovery the goal instead of polite test-count inflation. In mature PHP repositories, that maintainer- and repo-shaped target is often far easier for the model to act on than a generic request."
         />
       </div>
 
