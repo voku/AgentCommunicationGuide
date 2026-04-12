@@ -121,7 +121,7 @@ export function Prompt14_VerifyWithTests() {
                 'Expand the current tests until Lars Moelleken (voku) would be OK with the amount of test coverage and you discovered at least one real issue.\nKeep pushing past the happy path.\nIf you do not find a real issue, missing edge case, or broken assumption, the suite is still too weak, so continue.\nIf a new test fails, fix the code instead of weakening the assertion.\nReport what issue you found or which risk area you closed.',
             },
           ]}
-          note="This works better than “please add some more tests” because it anchors the quality bar to a concrete maintainer standard, forces the agent to keep extending coverage until it finds a real weakness, and makes test discovery the goal instead of polite test-count inflation. In mature PHP repositories, that maintainer- and repo-shaped target is often far easier for the model to act on than a generic request."
+          note="This works better than a vague request for more tests because it anchors the quality bar to a concrete maintainer standard, forces the agent to keep extending coverage until it finds a real weakness, and makes test discovery the goal instead of polite test-count inflation. In mature PHP repositories, that maintainer- and repo-shaped target is often far easier for the model to act on than a generic request."
         />
       </div>
 
