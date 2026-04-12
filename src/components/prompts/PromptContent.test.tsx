@@ -7,10 +7,7 @@ import { PromptExampleStack, PromptPatternCard } from './PromptExampleLayouts';
 import { Prompt13_MomentumMissingness } from './Prompt13_MomentumMissingness';
 import { Prompt14_VerifyWithTests } from './Prompt14_VerifyWithTests';
 
-const prompt13Source = readFileSync(
-  '/home/runner/work/AgentCommunicationGuide/AgentCommunicationGuide/src/components/prompts/Prompt13_MomentumMissingness.tsx',
-  'utf8',
-);
+const prompt13Source = readFileSync(new URL('./Prompt13_MomentumMissingness.tsx', import.meta.url), 'utf8');
 
 test('PromptExampleStack uses the default "Why this works" note title', () => {
   const html = renderToStaticMarkup(
