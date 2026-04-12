@@ -25,6 +25,7 @@ import { Prompt11_DoubleCheckMultiPass } from './components/prompts/Prompt11_Dou
 import { Prompt12_DeletionContainment } from './components/prompts/Prompt12_DeletionContainment';
 import { Prompt13_MomentumMissingness } from './components/prompts/Prompt13_MomentumMissingness';
 import { Prompt14_VerifyWithTests } from './components/prompts/Prompt14_VerifyWithTests';
+import { Prompt15_FinalThesis } from './components/prompts/Prompt15_FinalThesis';
 
 type View = 'systems' | 'prompts';
 
@@ -69,6 +70,7 @@ const PROMPTS_NAV_ITEMS = [
   { id: 'prompt-12', label: '12. Deletion & scope' },
   { id: 'prompt-13', label: '13. Momentum & gaps' },
   { id: 'prompt-14', label: '14. Verify with tests' },
+  { id: 'prompt-15', label: '15. Final thesis' },
 ];
 
 export default function App() {
@@ -315,6 +317,7 @@ export default function App() {
                     <Prompt12_DeletionContainment />
                     <Prompt13_MomentumMissingness />
                     <Prompt14_VerifyWithTests />
+                    <Prompt15_FinalThesis />
                   </>
                 )}
               </article>

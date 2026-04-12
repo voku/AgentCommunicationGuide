@@ -135,17 +135,6 @@ export function Prompt13_MomentumMissingness() {
         <strong>section 5 (Critical Review: Anti-Anchoring and Self-Correction)</strong> above.
       </div>
 
-      <div className="mt-8 rounded-2xl bg-gray-900 p-6 text-white shadow-xl sm:p-8">
-        <div className="mb-3 text-sm font-bold uppercase tracking-widest text-violet-300">Final thesis</div>
-        <p className="text-xl font-medium leading-tight text-white sm:text-2xl">
-          Good prompts do not simulate expertise. They allocate attention, constrain behavior, demand proof, and control
-          stopping conditions.
-        </p>
-        <p className="mt-4 text-base leading-relaxed text-gray-300">
-          If your agent only produces useful output when surrounded by long motivational paragraphs, you have not built
-          a reliable workflow — you have only made instability harder to notice.
-        </p>
-      </div>
     </div>
   );
 }
