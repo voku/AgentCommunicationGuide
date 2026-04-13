@@ -5,11 +5,12 @@ export function Prompt13_MomentumMissingness() {
   return (
     <div id="prompt-13" className="mb-16 scroll-mt-24 sm:mb-24">
       <h2 className="mb-6 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl md:text-4xl">
-        13. Momentum, Expansion &amp; Missingness
+        13. Momentum, Continuation &amp; Missingness
       </h2>
 
       <p className="mb-8 text-xl font-medium leading-relaxed text-gray-800">
-        Four patterns that keep the agent moving instead of stopping after the first acceptable result.
+        Three patterns that keep the agent moving instead of stopping after the first acceptable result — and one that
+        finds gaps instead of bugs.
       </p>
 
       <div className="space-y-6">
@@ -60,12 +61,12 @@ export function Prompt13_MomentumMissingness() {
 
         {/* ── Expansion Prompt ─────────────────────────────────── */}
         <PromptExampleStack
-          title="Expansion Prompt — push one level further without rewriting"
-          intro="Expansion prompts prevent premature stopping. The agent takes what already exists and extends it one level further — more complete, more general, or more thorough — without changing direction or rewriting from scratch."
+          title="Continuation beyond the first good result"
+          intro="A weak prompt stops after one acceptable fix. A stronger prompt tells the agent to continue within the already validated boundary until the defined done condition is reached."
           entries={[
             {
-              label: 'Bad',
-              tone: 'red',
+              label: 'Weak',
+              tone: 'amber',
               content: 'Great. Now make it better.',
             },
             {
@@ -76,7 +77,7 @@ export function Prompt13_MomentumMissingness() {
             },
           ]}
           noteTitle="Why it works"
-          note="Prevents premature stopping. Keeps the agent on the same track. Turns a rough draft into a fuller version. Avoids unnecessary rewrites."
+          note="Prevents premature stopping. Keeps the agent on the same validated track. Turns one fix into bounded follow-up work without unnecessary restarts."
         />
 
         <PromptExampleStack
@@ -134,13 +135,6 @@ export function Prompt13_MomentumMissingness() {
         <strong>section 5 (Critical Review: Anti-Anchoring and Self-Correction)</strong> above.
       </div>
 
-      <div className="mt-8 rounded-2xl bg-gray-900 p-6 text-white shadow-xl sm:p-8">
-        <div className="mb-3 text-sm font-bold uppercase tracking-widest text-violet-300">Final thesis</div>
-        <p className="text-xl font-medium leading-tight text-white sm:text-2xl">
-          Good prompts do not simulate expertise. They allocate attention, constrain behavior, demand proof, control
-          stopping conditions — and capture what works so the next session can start where this one finished.
-        </p>
-      </div>
     </div>
   );
 }

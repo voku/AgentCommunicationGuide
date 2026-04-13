@@ -55,11 +55,11 @@ export function Prompt4_AskForProof() {
   return (
     <div id="prompt-4" className="mb-16 scroll-mt-24 sm:mb-24">
       <h2 className="mb-6 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl md:text-4xl">
-        4. Keep the Reusable Prompt Patterns
+        4. Reusable Prompt Patterns
       </h2>
 
       <p className="mb-10 text-xl font-medium leading-relaxed text-gray-800">
-        These examples are too useful to lose. They are the kinds of prompts developers can reuse tomorrow.
+        Each pattern below is directly reusable. They encode the same logic as the four-part shape — but applied to specific, recurring situations in real development work.
       </p>
 
       <div className="grid gap-6 xl:grid-cols-2">

@@ -1,78 +1,39 @@
 import { PromptExampleStack } from './PromptExampleLayouts';
 
-const VAGUE_WORDS = [
-  'maybe',
-  'possibly',
-  'try to',
-  'consider',
-  'should probably',
-  'generally',
-  'perhaps',
-  'kind of',
-  'sort of',
-  'if possible',
-  'as needed',
-  'approximately',
-  'I think',
-  'it might be good to',
-];
-
 export function Prompt10_VaguePhrases() {
   return (
     <div id="prompt-10" className="mb-16 scroll-mt-24 sm:mb-24">
       <h2 className="mb-6 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl md:text-4xl">
-        10. Words That Quietly Break Your Prompts
+        10. Directness Beats Politeness
       </h2>
 
       <p className="mb-8 text-xl font-medium leading-relaxed text-gray-800">
-        Hedge words do not add nuance. They give the model permission to do nothing — and narrate it confidently.
+        Weak prompts hedge. Strong prompts correct.
       </p>
 
-      <PromptExampleStack
-        title="Vague prompt vs. operational prompt"
-        entries={[
-          {
-            label: 'Bad',
-            tone: 'red',
-            content:
-              'Maybe try to improve this code. Perhaps consider cleaning it up a bit if possible.',
-          },
-          {
-            label: 'Better',
-            tone: 'amber',
-            content: 'Improve this code.',
-          },
-          {
-            label: 'Best',
-            tone: 'blue',
-            content:
-              'Remove the three duplicated parsing steps in this module.\nKeep the public API unchanged.\nDo not touch unrelated files.\nRun the test suite and paste the output.',
-          },
-        ]}
-        note="Every hedge word weakens a constraint. 'Try to' means the model can skip it. 'Maybe' means the model can ignore it. 'If possible' means the model will skip the hard part first."
-      />
+      <p className="mb-6 leading-relaxed text-gray-700">
+        LLMs do not need emotional cushioning. They need unambiguous correction. Polite hedging does not make the output
+        more careful — it makes the constraint easier to ignore.
+      </p>
 
-      <div className="mt-8 overflow-hidden rounded-2xl border border-red-200 bg-white shadow-sm">
-        <div className="border-b border-red-200 bg-red-50 px-5 py-4">
-          <h3 className="font-bold text-red-800">Words that weaken every prompt they appear in</h3>
-        </div>
-        <div className="p-5 sm:p-6">
-          <div className="flex flex-wrap gap-2">
-            {VAGUE_WORDS.map((word) => (
-              <span
-                key={word}
-                className="rounded-full border border-red-200 bg-red-50 px-3 py-1 font-mono text-xs text-red-800"
-              >
-                {word}
-              </span>
-            ))}
-          </div>
-          <p className="mt-4 text-sm leading-relaxed text-gray-600">
-            Replace every one of these with a concrete action, a measurable outcome, or an explicit constraint. If you
-            cannot replace it, the requirement itself is not yet clear enough to prompt.
-          </p>
-        </div>
-      </div>
+      <div className="space-y-6">
+        <PromptExampleStack
+          title="Correcting a wrong implementation"
+          entries={[
+            {
+              label: 'Weak',
+              tone: 'amber',
+              content: 'Maybe reconsider this implementation.',
+            },
+            {
+              label: 'Best',
+              tone: 'blue',
+              content:
+                'This patch violates the task constraints.\n\nProblems:\n- public API changed\n- regression test missing\n- unrelated files modified\n\nDiscard it and restart with:\n1. failing test first\n2. minimal patch\n3. raw validator output',
+            },
+          ]}
+          note="The model does not interpret 'maybe reconsider' as a correction signal. It interprets it as soft approval. Name the violations, list them explicitly, and state the required restart conditions."
+        />
 
       <PromptExampleStack
         title="Directness beats politeness — discard and restart"

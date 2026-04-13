@@ -25,12 +25,26 @@ import { Prompt11_DoubleCheckMultiPass } from './components/prompts/Prompt11_Dou
 import { Prompt12_DeletionContainment } from './components/prompts/Prompt12_DeletionContainment';
 import { Prompt13_MomentumMissingness } from './components/prompts/Prompt13_MomentumMissingness';
 import { Prompt14_VerifyWithTests } from './components/prompts/Prompt14_VerifyWithTests';
+import { Prompt15_FinalThesis } from './components/prompts/Prompt15_FinalThesis';
 
 type View = 'systems' | 'prompts';
 
 const SCROLL_OFFSET = 72;
 const OBSERVER_ROOT_MARGIN = '-80px 0px -45% 0px';
 const MAX_WIDTH_CLASS = 'max-w-[1120px]';
+
+const VIEW_META: Record<View, { title: string; description: string }> = {
+  systems: {
+    title: 'Stop Writing Better Prompts. Build Better Systems.',
+    description:
+      'Reliable coding-agent output comes from tests, static analysis, CI, repository structure, and specs — not from prompt poetry.',
+  },
+  prompts: {
+    title: 'Stop Writing Clever Prompts. Start Writing Operational Prompts.',
+    description:
+      'Good prompts allocate attention, constrain behavior, demand proof, and control stopping conditions — not motivational speeches.',
+  },
+};
 
 const SYSTEMS_NAV_ITEMS = [
   { id: 'chapter-1', label: '1. The real problem' },
@@ -45,24 +59,29 @@ const PROMPTS_NAV_ITEMS = [
   { id: 'prompt-1', label: '1. Core mistake' },
   { id: 'prompt-2', label: '2. Prompt shape' },
   { id: 'prompt-3', label: '3. Prompt classes' },
-  { id: 'prompt-4', label: '4. Reusable examples' },
+  { id: 'prompt-4', label: '4. Reusable patterns' },
   { id: 'prompt-5', label: '5. Critical review' },
-  { id: 'prompt-6', label: '6. Context anchors' },
-  { id: 'prompt-7', label: '7. Steer attention' },
-  { id: 'prompt-8', label: '8. Planning prompts' },
-  { id: 'prompt-9', label: '9. Native language' },
-  { id: 'prompt-10', label: '10. Vague words' },
+  { id: 'prompt-6', label: '6. Context & attention' },
+  { id: 'prompt-7', label: '7. Planning prompts' },
+  { id: 'prompt-8', label: '8. Native language' },
+  { id: 'prompt-9', label: '9. Vague words' },
+  { id: 'prompt-10', label: '10. Directness' },
   { id: 'prompt-11', label: '11. Double-check' },
   { id: 'prompt-12', label: '12. Deletion & scope' },
-  { id: 'prompt-13', label: '13. Momentum & expansion' },
+  { id: 'prompt-13', label: '13. Momentum & gaps' },
   { id: 'prompt-14', label: '14. Verify with tests' },
+  { id: 'prompt-15', label: '15. Final thesis' },
 ];
 
 export default function App() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState('chapter-1');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [view, setView] = useState<View>('systems');
+  const [view, setView] = useState<View>(() => {
+    const params = new URLSearchParams(window.location.search);
+    const v = params.get('view');
+    return v === 'systems' || v === 'prompts' ? v : 'systems';
+  });
   const pendingScrollRef = useRef<string | null>(null);
   const assetBase = import.meta.env.BASE_URL;
 
@@ -92,6 +111,28 @@ export default function App() {
       setActiveSection(defaultSection);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+  }, [view]);
+
+  useEffect(() => {
+    const { title, description } = VIEW_META[view];
+    const url = new URL(window.location.href);
+    url.searchParams.set('view', view);
+    window.history.replaceState({}, '', url.toString());
+
+    document.title = title;
+
+    const setMeta = (selector: string, attr: string, value: string) => {
+      const el = document.querySelector(selector);
+      if (el) el.setAttribute(attr, value);
+    };
+    setMeta('meta[name="description"]', 'content', description);
+    setMeta('meta[property="og:title"]', 'content', title);
+    setMeta('meta[property="og:description"]', 'content', description);
+    setMeta('meta[property="og:url"]', 'content', url.toString());
+    setMeta('meta[name="twitter:title"]', 'content', title);
+    setMeta('meta[name="twitter:description"]', 'content', description);
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) canonical.setAttribute('href', url.toString());
   }, [view]);
 
   useEffect(() => {
@@ -276,6 +317,7 @@ export default function App() {
                     <Prompt12_DeletionContainment />
                     <Prompt13_MomentumMissingness />
                     <Prompt14_VerifyWithTests />
+                    <Prompt15_FinalThesis />
                   </>
                 )}
               </article>
