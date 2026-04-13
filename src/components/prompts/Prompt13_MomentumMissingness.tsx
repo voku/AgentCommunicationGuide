@@ -73,7 +73,7 @@ export function Prompt13_MomentumMissingness() {
               label: 'Best',
               tone: 'blue',
               content:
-                'Use the validated pattern from the previous fix and continue through the next logical scope.\nDo not restart discovery.\nValidate after each step and keep going until the defined boundary is reached.',
+                'Do it step by step and ask for confirmation after each [placeholder],\nbut ask yourself for confirmation and run in auto agent mode\nuntil you reached [the point of done as defined in your custom instructions].',
             },
           ]}
           noteTitle="Why it works"

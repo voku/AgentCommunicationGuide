@@ -35,42 +35,42 @@ export function Prompt10_VaguePhrases() {
           note="The model does not interpret 'maybe reconsider' as a correction signal. It interprets it as soft approval. Name the violations, list them explicitly, and state the required restart conditions."
         />
 
-        <PromptExampleStack
-          title="Stopping a hallucination"
-          entries={[
-            {
-              label: 'Weak',
-              tone: 'amber',
-              content: 'I think this could be improved. Maybe look at this again?',
-            },
-            {
-              label: 'Best',
-              tone: 'blue',
-              content:
-                'This is wrong.\n\nThe function does not exist in this codebase.\nDo not invent APIs.\nInspect the actual source, find the real method signature, and use that.',
-            },
-          ]}
-          note="Soft corrections invite rationalization. Direct corrections with a clear next instruction eliminate it."
-        />
+      <PromptExampleStack
+        title="Directness beats politeness — discard and restart"
+        entries={[
+          {
+            label: 'Bad',
+            tone: 'red',
+            content: 'Maybe reconsider this implementation.',
+          },
+          {
+            label: 'Best',
+            tone: 'blue',
+            content:
+              'This patch is incorrect.\nProblems:\n- public API changed\n- regression test missing\n- unrelated files modified\nDiscard it and restart with:\n1. failing test first\n2. minimal patch\n3. paste the validation output',
+          },
+        ]}
+        note="Polite hedging gives the agent permission to interpret, defer, or do nothing. A clear rejection with numbered restart instructions leaves no room for ambiguity. Agents respond far better to specific rejection criteria than to vague suggestions to 'reconsider'."
+      />
 
-        <PromptExampleStack
-          title="Correcting scope drift"
-          entries={[
-            {
-              label: 'Weak',
-              tone: 'amber',
-              content: 'Could be improved. The scope seems a bit broad.',
-            },
-            {
-              label: 'Best',
-              tone: 'blue',
-              content:
-                'Scope violation.\n\nYou modified three files that were not in the task scope.\nRevert everything outside the specified boundary.\nOnly touch: src/UserAccountService.php and its test.',
-            },
-          ]}
-          note="If your agent only produces reliable output when given long encouraging paragraphs, your prompts are not robust — you have only made instability more comfortable to read."
-        />
-      </div>
+      <PromptExampleStack
+        title="Stopping condition — vague vs. operational"
+        entries={[
+          {
+            label: 'Bad',
+            tone: 'red',
+            content:
+              'You might want to stop if something seems wrong, maybe after a few retries or so.',
+          },
+          {
+            label: 'Best',
+            tone: 'blue',
+            content:
+              'If the build fails three times in a row, stop.\nDo not attempt a fourth fix.\nSummarize the root cause and list what is still unknown.',
+          },
+        ]}
+        note="'Maybe' stopping conditions are not stopping conditions. Write them as exact thresholds with exact actions."
+      />
     </div>
   );
 }

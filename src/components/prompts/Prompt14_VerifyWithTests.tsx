@@ -105,6 +105,28 @@ export function Prompt14_VerifyWithTests() {
           ]}
           note="Regression-seeking prompts push the agent past shallow coverage. The goal is to find where reality disagrees with expectations, not to produce a comforting number of passing tests."
         />
+
+        <PromptExampleStack
+          title="Combined example — calibrate coverage to a real maintainer"
+          entries={[
+            {
+              label: 'Weak',
+              tone: 'amber',
+              content: 'Please add some more tests.',
+            },
+            {
+              label: 'Best',
+              tone: 'blue',
+              content:
+                `Expand the current tests until Lars Moelleken (voku) would be OK with the amount of test coverage and you discovered at least one real issue.
+Keep pushing past the happy path.
+If you do not find a real issue, missing edge case, or broken assumption, the suite is still too weak, so continue.
+If a new test fails, fix the code instead of weakening the assertion.
+Report what issue you found or which risk area you closed.`,
+            },
+          ]}
+          note="This works better than a vague request for more tests because it anchors the quality bar to a concrete maintainer standard, forces the agent to keep extending coverage until it finds a real weakness, and makes test discovery the goal instead of polite test-count inflation. In mature PHP repositories, that maintainer- and repo-shaped target is often far easier for the model to act on than a generic request."
+        />
       </div>
 
       <div className="mt-8 rounded-r-2xl border-l-4 border-violet-500 bg-violet-50 p-5 text-sm text-violet-900 shadow-sm sm:p-6">

@@ -57,6 +57,24 @@ export function Prompt5_PreventHallucination() {
         />
 
         <PromptExampleStack
+          title="Surface uncertainty before implementing"
+          entries={[
+            {
+              label: 'Bad',
+              tone: 'red',
+              content: 'Fix the issue in UserAccountService.',
+            },
+            {
+              label: 'Best',
+              tone: 'blue',
+              content:
+                'Before implementing, state your assumptions about the problem.\nIf ambiguity exists, present the possible interpretations.\nAsk for clarification rather than guessing — do not silently commit to an interpretation.',
+            },
+          ]}
+          note="Silent assumption is the most common source of confident wrong answers. This prompt forces the model to surface what it does not know before it starts editing files. One clarifying exchange is far cheaper than reverting a plausible-looking but wrong patch."
+        />
+
+        <PromptExampleStack
           title="Anti-rubber-stamp — challenge the polished draft"
           entries={[
             {
