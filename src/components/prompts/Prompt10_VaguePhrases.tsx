@@ -75,6 +75,24 @@ export function Prompt10_VaguePhrases() {
       </div>
 
       <PromptExampleStack
+        title="Directness beats politeness — discard and restart"
+        entries={[
+          {
+            label: 'Bad',
+            tone: 'red',
+            content: 'Maybe reconsider this implementation.',
+          },
+          {
+            label: 'Best',
+            tone: 'blue',
+            content:
+              'This patch is incorrect.\nProblems:\n- public API changed\n- regression test missing\n- unrelated files modified\nDiscard it and restart with:\n1. failing test first\n2. minimal patch\n3. paste the validation output',
+          },
+        ]}
+        note="Polite hedging gives the agent permission to interpret, defer, or do nothing. A clear rejection with numbered restart instructions leaves no room for ambiguity. Agents respond far better to specific rejection criteria than to vague suggestions to 'reconsider'."
+      />
+
+      <PromptExampleStack
         title="Stopping condition — vague vs. operational"
         entries={[
           {

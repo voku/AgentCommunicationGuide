@@ -58,6 +58,24 @@ export function Prompt12_DeletionContainment() {
         />
 
         <PromptExampleStack
+          title="Enforce simplicity — prevent overengineering"
+          entries={[
+            {
+              label: 'Bad',
+              tone: 'red',
+              content: 'Implement the caching layer.',
+            },
+            {
+              label: 'Best',
+              tone: 'blue',
+              content:
+                'Implement the caching layer.\nPrefer the simplest solution that satisfies the requirements.\nDo not introduce new abstractions unless the task explicitly requires them.\nDo not add speculative flexibility, configuration nobody requested, or defensive code for impossible situations.\nIf the implementation exceeds what a senior engineer would consider minimal, simplify it before proposing.',
+            },
+          ]}
+          note="Coding models drift toward overengineering by default. They introduce unnecessary abstractions, speculative flexibility, and configuration nobody asked for. This constraint actively counters that. One rule eliminates a surprising amount of unnecessary code."
+        />
+
+        <PromptExampleStack
           title="Containment: stop the rewrite reflex"
           entries={[
             {
