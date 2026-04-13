@@ -72,7 +72,7 @@ export function Prompt13_MomentumMissingness() {
               label: 'Best',
               tone: 'blue',
               content:
-                'Do it step by step and ask for confirmation after each [placeholder],\nbut ask yourselves for confirmation and run in auto agent mode\nuntil you reached [the point of done as defined in your custom instructions].',
+                'Do it step by step and ask for confirmation after each [placeholder],\nbut ask yourself for confirmation and run in auto agent mode\nuntil you reached [the point of done as defined in your custom instructions].',
             },
           ]}
           noteTitle="Why it works"
