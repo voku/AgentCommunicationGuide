@@ -80,6 +80,28 @@ export function Prompt13_MomentumMissingness() {
           note="Prevents premature stopping. Keeps the agent on the same validated track. Turns one fix into bounded follow-up work without unnecessary restarts."
         />
 
+        {/* ── Minimal CI-loop Prompt ───────────────────────────── */}
+        <PromptExampleStack
+          title="Minimal CI-loop prompt — delegate done to custom instructions"
+          intro="The most effective continuation prompts are often also the shortest. When the definition of done lives in your custom instructions or AGENTS.md, a single-line prompt is enough to keep the agent running without further input."
+          entries={[
+            {
+              label: 'Verbose',
+              tone: 'amber',
+              content:
+                'Please run the CI pipeline and if it fails, try to investigate what the issue is, then fix it and run it again, and keep doing that until everything passes.',
+            },
+            {
+              label: 'Best',
+              tone: 'blue',
+              content:
+                'Run the CI pipeline yourself and fix the issue until you reached the point of done as defined in your custom instructions.',
+            },
+          ]}
+          noteTitle="Why it works"
+          note="Three properties make this minimal prompt effective: 'yourself' is explicit — no waiting for permission; 'fix the issue' is directive, not interrogative; 'as defined in your custom instructions' delegates the done condition to the pre-loaded AGENTS.md or Skills file rather than restating it inline. The agent already knows what done looks like — it just needs to be told to run until it gets there."
+        />
+
         <PromptExampleStack
           title='"What is missing?" vs "What is wrong?"'
           entries={[
