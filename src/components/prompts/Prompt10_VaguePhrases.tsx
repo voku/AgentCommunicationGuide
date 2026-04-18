@@ -71,5 +71,6 @@ export function Prompt10_VaguePhrases() {
           note="'Maybe' stopping conditions are not stopping conditions. Write them as exact thresholds with exact actions."
         />
       </div>
+    </div>
   );
 }
