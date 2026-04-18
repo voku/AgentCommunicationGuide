@@ -8,8 +8,8 @@ export function Prompt14_VerifyWithTests() {
       </h2>
 
       <p className="mb-8 text-xl font-medium leading-relaxed text-gray-800">
-        Tests are a verification tool, not a target. Writing tests that pass without validating real behavior is worse
-        than having no tests at all — it creates false confidence.
+        Tests are a verification tool, not a target. New tests that never uncover a regression, broken assumption, or
+        missing edge case are bad tests — they create false confidence instead of validating real behavior.
       </p>
 
       <div className="space-y-6">
@@ -100,10 +100,10 @@ export function Prompt14_VerifyWithTests() {
               label: 'Best',
               tone: 'blue',
               content:
-                'The code already exists. Add unit tests with the mindset that good tests should discover regressions in the codebase.\nKeep adding tests until you expose real broken assumptions, missing edge cases, or behavior drift; otherwise you are only testing the happy path.',
+                'The code already exists. Add unit tests with the mindset that good tests should discover regressions in the codebase.\nIf a new test does not expose a real broken assumption, missing edge case, or behavior drift, it is still too weak, so keep going until one does.',
             },
           ]}
-          note="Regression-seeking prompts push the agent past shallow coverage. The goal is to find where reality disagrees with expectations, not to produce a comforting number of passing tests."
+          note="Regression-seeking prompts push the agent past shallow coverage. The goal is to find where reality disagrees with expectations, not to produce a comforting number of passing tests that never discover anything."
         />
 
         <PromptExampleStack
