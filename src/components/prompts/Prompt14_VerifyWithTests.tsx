@@ -44,10 +44,10 @@ export function Prompt14_VerifyWithTests() {
               label: 'Best',
               tone: 'blue',
               content:
-                'Add the feature as planned, but start with a TDD approach.\nBegin with a failing test, then implement only enough code to pass it, and keep iterating until the task meets its acceptance criteria or definition of done.',
+                'We need to add more tests in a TDD way.\nStart with a failing test, implement only enough to pass, and repeat.\nDo not stop at the happy path — add edge and failure-path coverage.\nIf a test cannot discover a regression, broken assumption, or behavior drift, it is still too weak, so continue.',
             },
           ]}
-          note="This prompt does not just ask for tests at the end. It makes the test suite drive the implementation order, which reduces speculative code and forces progress to stay measurable."
+          note="This keeps the original TDD flow but raises the quality bar: tests must challenge the code and expose risk, not just confirm the easiest success case."
         />
 
         <PromptExampleStack
