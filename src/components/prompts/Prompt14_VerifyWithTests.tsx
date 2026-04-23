@@ -107,6 +107,28 @@ export function Prompt14_VerifyWithTests() {
         />
 
         <PromptExampleStack
+          title="Coverage growth must expose real problems"
+          entries={[
+            {
+              label: 'Weak',
+              tone: 'amber',
+              content:
+                'Increase the test coverage for at least 5% and if your new tests didn\'t find any regressions, your tests are shit.',
+            },
+            {
+              label: 'Best',
+              tone: 'blue',
+              content:
+                `Increase test coverage by at least 5 percentage points.
+Coverage growth alone is not the goal — every new test must earn its place by exposing a real regression, a broken edge case, or a missing assumption.
+If no new test uncovers a problem, the suite is still too weak; keep extending it until one does.
+Report which regression or risk area each group of new tests closes.`,
+            },
+          ]}
+          note="The weak version has the right instinct — meaningful coverage must find problems — but 'your tests are shit' gives the agent no actionable guidance. The best version keeps the same quality bar (5 % growth + at least one real finding) and tells the agent exactly what to do when it falls short: keep going and report what it found."
+        />
+
+        <PromptExampleStack
           title="Combined example — calibrate coverage to a real maintainer"
           entries={[
             {
