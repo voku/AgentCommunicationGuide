@@ -82,7 +82,7 @@ export function Prompt14_VerifyWithTests() {
               label: 'Best',
               tone: 'blue',
               content:
-                'Do a final validation using your own reasoning.\nFor each file under test, read its return type and output contract, then verify the tests exercise every branch.\nFor example, if a hook returns `data: User | null`, confirm one test covers the null case and another covers a valid User with all expected fields.\nConfirm your own reasoning after each file, then move on — run in auto-agent mode until every output contract is validated or a gap is flagged.',
+                'Do a final validation using your own reasoning.\nFor each file under test, read its public interface and output contract, then verify the tests exercise every branch and edge case.\nFor each return type or output, confirm one test covers the null/empty/error case and another covers a valid result with all expected fields or side effects.\nConfirm your own reasoning after each file, then move on — run in auto-agent mode until every output contract is validated or a gap is flagged.',
             },
           ]}
           note="This prompt makes the agent act as a test reviewer, not just a test runner. It forces branch-by-branch reasoning against the actual return types and output contracts, catching tests that pass but never truly exercise the code paths they claim to cover."
