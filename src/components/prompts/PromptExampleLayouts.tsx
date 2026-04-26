@@ -1,4 +1,6 @@
-import { AlertTriangle, CheckCircle, XCircle } from 'lucide-react';
+import { useState } from 'react';
+import { AlertTriangle, Check, CheckCircle, Copy, XCircle } from 'lucide-react';
+import { Tooltip } from '../Tooltip';
 
 const TONE_STYLES = {
   red: {
@@ -24,6 +26,32 @@ const TONE_STYLES = {
 } as const;
 
 type Tone = keyof typeof TONE_STYLES;
+
+function CopyButton({ text }: { text: string }) {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // clipboard access denied or unavailable
+    }
+  };
+
+  return (
+    <Tooltip content="Copy prompt" interactiveChild>
+      <button
+        onClick={handleCopy}
+        className="p-1.5 text-current opacity-40 hover:opacity-80 hover:bg-black/10 rounded-md transition-all"
+        aria-label="Copy prompt"
+      >
+        {copied ? <Check size={13} aria-hidden="true" /> : <Copy size={13} aria-hidden="true" />}
+      </button>
+    </Tooltip>
+  );
+}
 
 interface PromptExampleEntry {
   label: string;
@@ -65,9 +93,14 @@ export function PromptExampleStack({
                 <Icon className="h-3.5 w-3.5" aria-hidden="true" />
                 <span>{label}</span>
               </div>
-              <pre className={`overflow-x-auto whitespace-pre-wrap rounded-xl border px-4 py-3 font-mono text-sm leading-relaxed ${body}`}>
-                {content}
-              </pre>
+              <div className="relative group/entry">
+                <pre className={`overflow-x-auto whitespace-pre-wrap rounded-xl border px-4 py-3 pr-10 font-mono text-sm leading-relaxed ${body}`}>
+                  {content}
+                </pre>
+                <div className="absolute top-2 right-2 opacity-0 group-hover/entry:opacity-100 transition-opacity">
+                  <CopyButton text={content} />
+                </div>
+              </div>
             </div>
           );
         })}
@@ -98,16 +131,26 @@ export function PromptPatternCard({ title, best, why, bad }: PromptPatternCardPr
         {bad && (
           <div>
             <span className="mb-1 block text-xs font-bold uppercase tracking-wider text-red-500">Bad</span>
-            <pre className="overflow-x-auto whitespace-pre-wrap rounded-xl border border-red-100 bg-red-50 px-4 py-3 font-mono text-sm leading-relaxed text-red-900">
-              {bad}
-            </pre>
+            <div className="relative group/bad">
+              <pre className="overflow-x-auto whitespace-pre-wrap rounded-xl border border-red-100 bg-red-50 px-4 py-3 pr-10 font-mono text-sm leading-relaxed text-red-900">
+                {bad}
+              </pre>
+              <div className="absolute top-2 right-2 opacity-0 group-hover/bad:opacity-100 transition-opacity text-red-900">
+                <CopyButton text={bad} />
+              </div>
+            </div>
           </div>
         )}
         <div>
           <span className="mb-1 block text-xs font-bold uppercase tracking-wider text-blue-600">Best</span>
-          <pre className="overflow-x-auto whitespace-pre-wrap rounded-xl border border-blue-100 bg-blue-50 px-4 py-3 font-mono text-sm leading-relaxed text-blue-900">
-            {best}
-          </pre>
+          <div className="relative group/best">
+            <pre className="overflow-x-auto whitespace-pre-wrap rounded-xl border border-blue-100 bg-blue-50 px-4 py-3 pr-10 font-mono text-sm leading-relaxed text-blue-900">
+              {best}
+            </pre>
+            <div className="absolute top-2 right-2 opacity-0 group-hover/best:opacity-100 transition-opacity text-blue-900">
+              <CopyButton text={best} />
+            </div>
+          </div>
         </div>
       </div>
       <p className="mt-4 border-l-2 border-gray-300 pl-3 text-sm leading-relaxed text-gray-600">{why}</p>
