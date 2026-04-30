@@ -1,4 +1,5 @@
 import { CrossViewLink } from '../CrossViewLink';
+import { CopyablePromptBlock } from '../CopyablePromptBlock';
 import { PromptExampleStack } from './PromptExampleLayouts';
 
 export function Prompt6_ContextAnchors() {
@@ -26,9 +27,7 @@ export function Prompt6_ContextAnchors() {
           <h4 className="font-bold text-blue-800">Example anchor</h4>
         </div>
         <div className="p-5">
-          <pre className="overflow-x-auto whitespace-pre-wrap rounded-lg bg-gray-900 p-4 font-mono text-sm leading-relaxed text-gray-100">
-            Implement this using TDD Detroit School.
-          </pre>
+          <CopyablePromptBlock text="Implement this using TDD Detroit School." />
         </div>
       </div>
 

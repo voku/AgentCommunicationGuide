@@ -1,6 +1,5 @@
-import { useState } from 'react';
-import { AlertTriangle, Check, CheckCircle, Copy, XCircle } from 'lucide-react';
-import { Tooltip } from '../Tooltip';
+import { AlertTriangle, CheckCircle, XCircle } from 'lucide-react';
+import { CopyToClipboardButton } from '../CopyToClipboardButton';
 
 const TONE_STYLES = {
   red: {
@@ -26,32 +25,6 @@ const TONE_STYLES = {
 } as const;
 
 type Tone = keyof typeof TONE_STYLES;
-
-function CopyButton({ text }: { text: string }) {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch {
-      // clipboard access denied or unavailable
-    }
-  };
-
-  return (
-    <Tooltip content="Copy prompt" interactiveChild>
-      <button
-        onClick={handleCopy}
-        className="p-1.5 text-current opacity-40 hover:opacity-80 hover:bg-black/10 rounded-md transition-all"
-        aria-label="Copy prompt"
-      >
-        {copied ? <Check size={13} aria-hidden="true" /> : <Copy size={13} aria-hidden="true" />}
-      </button>
-    </Tooltip>
-  );
-}
 
 interface PromptExampleEntry {
   label: string;
@@ -93,13 +66,18 @@ export function PromptExampleStack({
                 <Icon className="h-3.5 w-3.5" aria-hidden="true" />
                 <span>{label}</span>
               </div>
-              <div className="relative group/entry">
-                <pre className={`overflow-x-auto whitespace-pre-wrap rounded-xl border px-4 py-3 pr-10 font-mono text-sm leading-relaxed ${body}`}>
+              <div className={`overflow-hidden rounded-xl ${body}`}>
+                <div className="flex justify-end px-2 pt-2">
+                  <CopyToClipboardButton
+                    text={content}
+                    tooltip="Copy prompt"
+                    ariaLabel="Copy prompt"
+                    className="text-current opacity-60 hover:bg-black/10 hover:opacity-100"
+                  />
+                </div>
+                <pre className="overflow-x-auto whitespace-pre-wrap px-4 pb-3 pt-1 font-mono text-sm leading-relaxed">
                   {content}
                 </pre>
-                <div className="absolute top-2 right-2 opacity-0 group-hover/entry:opacity-100 transition-opacity">
-                  <CopyButton text={content} />
-                </div>
               </div>
             </div>
           );
@@ -131,25 +109,35 @@ export function PromptPatternCard({ title, best, why, bad }: PromptPatternCardPr
         {bad && (
           <div>
             <span className="mb-1 block text-xs font-bold uppercase tracking-wider text-red-500">Bad</span>
-            <div className="relative group/bad">
-              <pre className="overflow-x-auto whitespace-pre-wrap rounded-xl border border-red-100 bg-red-50 px-4 py-3 pr-10 font-mono text-sm leading-relaxed text-red-900">
+            <div className="overflow-hidden rounded-xl border border-red-100 bg-red-50 text-red-900">
+              <div className="flex justify-end px-2 pt-2">
+                <CopyToClipboardButton
+                  text={bad}
+                  tooltip="Copy prompt"
+                  ariaLabel="Copy prompt"
+                  className="opacity-60 hover:bg-black/10 hover:opacity-100"
+                />
+              </div>
+              <pre className="overflow-x-auto whitespace-pre-wrap px-4 pb-3 pt-1 font-mono text-sm leading-relaxed">
                 {bad}
               </pre>
-              <div className="absolute top-2 right-2 opacity-0 group-hover/bad:opacity-100 transition-opacity text-red-900">
-                <CopyButton text={bad} />
-              </div>
             </div>
           </div>
         )}
         <div>
           <span className="mb-1 block text-xs font-bold uppercase tracking-wider text-blue-600">Best</span>
-          <div className="relative group/best">
-            <pre className="overflow-x-auto whitespace-pre-wrap rounded-xl border border-blue-100 bg-blue-50 px-4 py-3 pr-10 font-mono text-sm leading-relaxed text-blue-900">
+          <div className="overflow-hidden rounded-xl border border-blue-100 bg-blue-50 text-blue-900">
+            <div className="flex justify-end px-2 pt-2">
+              <CopyToClipboardButton
+                text={best}
+                tooltip="Copy prompt"
+                ariaLabel="Copy prompt"
+                className="opacity-60 hover:bg-black/10 hover:opacity-100"
+              />
+            </div>
+            <pre className="overflow-x-auto whitespace-pre-wrap px-4 pb-3 pt-1 font-mono text-sm leading-relaxed">
               {best}
             </pre>
-            <div className="absolute top-2 right-2 opacity-0 group-hover/best:opacity-100 transition-opacity text-blue-900">
-              <CopyButton text={best} />
-            </div>
           </div>
         </div>
       </div>

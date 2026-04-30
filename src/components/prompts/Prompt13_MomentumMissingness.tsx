@@ -121,6 +121,24 @@ export function Prompt13_MomentumMissingness() {
           note="Error-finding and missingness-finding are different lenses. Bug-finding finds what is broken. Missingness-finding finds what was never built. Both are necessary. Neither replaces the other."
         />
 
+        <PromptExampleStack
+          title="TODO sweep plus immediate low-hanging fruit"
+          entries={[
+            {
+              label: 'Weak',
+              tone: 'amber',
+              content: 'Search for TODOs and maybe clean a few things up.',
+            },
+            {
+              label: 'Best',
+              tone: 'blue',
+              content:
+                'Analyze all `TODO@` comments in the codebase.\nGroup them by file and theme.\nFix any low-hanging fruit you can safely resolve directly.\nThen update TODO.md with:\n  • the remaining TODOs\n  • what you fixed immediately\n  • what still needs follow-up\nDo not invent tasks that are not grounded in the repository.',
+            },
+          ]}
+          note="This combines missingness-finding with continuation. The agent audits what still exists, resolves the easy wins immediately, and leaves behind a durable TODO artifact for the remaining work."
+        />
+
         <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
           <div className="border-b border-gray-200 bg-gray-50 px-5 py-4">
             <h3 className="text-lg font-bold text-gray-900">Separation of ideation from implementation</h3>

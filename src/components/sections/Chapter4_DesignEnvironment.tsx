@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { CheckCircle, FlaskConical, XCircle } from 'lucide-react';
+import { CopyablePromptBlock } from '../CopyablePromptBlock';
 
 export function Chapter4_DesignEnvironment() {
   return (
@@ -179,9 +180,9 @@ function VersionBlock({
         </div>
       </div>
       <div className="p-5 sm:p-6">
-        <pre className="mb-4 overflow-x-auto rounded-lg bg-gray-900 p-4 font-mono text-sm leading-relaxed whitespace-pre-wrap text-gray-100">
-          {prompt}
-        </pre>
+        <div className="mb-4">
+          <CopyablePromptBlock text={prompt} />
+        </div>
         <p className={`rounded-lg border p-3 text-sm leading-relaxed ${styles.note}`}>{note}</p>
       </div>
     </div>
