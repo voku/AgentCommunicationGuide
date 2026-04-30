@@ -66,11 +66,8 @@ export function PromptExampleStack({
                 <Icon className="h-3.5 w-3.5" aria-hidden="true" />
                 <span>{label}</span>
               </div>
-              <div className="relative group/entry">
-                <pre className={`overflow-x-auto whitespace-pre-wrap rounded-xl border px-4 py-3 pr-24 font-mono text-sm leading-relaxed ${body}`}>
-                  {content}
-                </pre>
-                <div className="absolute top-2 right-2">
+              <div className={`overflow-hidden rounded-xl ${body}`}>
+                <div className="flex justify-end px-2 pt-2">
                   <CopyToClipboardButton
                     text={content}
                     tooltip="Copy prompt"
@@ -78,6 +75,9 @@ export function PromptExampleStack({
                     className="text-current opacity-60 hover:bg-black/10 hover:opacity-100"
                   />
                 </div>
+                <pre className="overflow-x-auto whitespace-pre-wrap px-4 pb-3 pt-1 font-mono text-sm leading-relaxed">
+                  {content}
+                </pre>
               </div>
             </div>
           );
@@ -109,11 +109,8 @@ export function PromptPatternCard({ title, best, why, bad }: PromptPatternCardPr
         {bad && (
           <div>
             <span className="mb-1 block text-xs font-bold uppercase tracking-wider text-red-500">Bad</span>
-            <div className="relative group/bad">
-              <pre className="overflow-x-auto whitespace-pre-wrap rounded-xl border border-red-100 bg-red-50 px-4 py-3 pr-24 font-mono text-sm leading-relaxed text-red-900">
-                {bad}
-              </pre>
-              <div className="absolute top-2 right-2 text-red-900">
+            <div className="overflow-hidden rounded-xl border border-red-100 bg-red-50 text-red-900">
+              <div className="flex justify-end px-2 pt-2">
                 <CopyToClipboardButton
                   text={bad}
                   tooltip="Copy prompt"
@@ -121,16 +118,16 @@ export function PromptPatternCard({ title, best, why, bad }: PromptPatternCardPr
                   className="opacity-60 hover:bg-black/10 hover:opacity-100"
                 />
               </div>
+              <pre className="overflow-x-auto whitespace-pre-wrap px-4 pb-3 pt-1 font-mono text-sm leading-relaxed">
+                {bad}
+              </pre>
             </div>
           </div>
         )}
         <div>
           <span className="mb-1 block text-xs font-bold uppercase tracking-wider text-blue-600">Best</span>
-          <div className="relative group/best">
-            <pre className="overflow-x-auto whitespace-pre-wrap rounded-xl border border-blue-100 bg-blue-50 px-4 py-3 pr-24 font-mono text-sm leading-relaxed text-blue-900">
-              {best}
-            </pre>
-            <div className="absolute top-2 right-2 text-blue-900">
+          <div className="overflow-hidden rounded-xl border border-blue-100 bg-blue-50 text-blue-900">
+            <div className="flex justify-end px-2 pt-2">
               <CopyToClipboardButton
                 text={best}
                 tooltip="Copy prompt"
@@ -138,6 +135,9 @@ export function PromptPatternCard({ title, best, why, bad }: PromptPatternCardPr
                 className="opacity-60 hover:bg-black/10 hover:opacity-100"
               />
             </div>
+            <pre className="overflow-x-auto whitespace-pre-wrap px-4 pb-3 pt-1 font-mono text-sm leading-relaxed">
+              {best}
+            </pre>
           </div>
         </div>
       </div>

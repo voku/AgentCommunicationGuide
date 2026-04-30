@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import { Check, Copy } from 'lucide-react';
 import { Tooltip } from './Tooltip';
 
+const COPY_FEEDBACK_DURATION_MS = 1500;
+
 interface CopyToClipboardButtonProps {
   text: string;
   tooltip?: string;
@@ -37,7 +39,7 @@ export function CopyToClipboardButton({
 
       timeoutRef.current = window.setTimeout(() => {
         setCopied(false);
-      }, 1500);
+      }, COPY_FEEDBACK_DURATION_MS);
     } catch {
       // clipboard access denied or unavailable
     }
