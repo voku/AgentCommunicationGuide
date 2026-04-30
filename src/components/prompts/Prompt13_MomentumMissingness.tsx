@@ -133,7 +133,7 @@ export function Prompt13_MomentumMissingness() {
               label: 'Best',
               tone: 'blue',
               content:
-                'Analyze all `TODO@` comments in the codebase.\nGroup them by file and theme.\nFix any low-hanging fruits you can safely resolve directly.\nThen update TODO.md with:\n  • the remaining TODOs\n  • what you fixed immediately\n  • what still needs follow-up\nDo not invent tasks that are not grounded in the repository.',
+                'Analyze all `TODO@` comments in the codebase.\nGroup them by file and theme.\nFix any low-hanging fruit you can safely resolve directly.\nThen update TODO.md with:\n  • the remaining TODOs\n  • what you fixed immediately\n  • what still needs follow-up\nDo not invent tasks that are not grounded in the repository.',
             },
           ]}
           note="This combines missingness-finding with continuation. The agent audits what still exists, resolves the easy wins immediately, and leaves behind a durable TODO artifact for the remaining work."
