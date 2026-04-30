@@ -25,6 +25,7 @@ const TONE_STYLES = {
 } as const;
 
 type Tone = keyof typeof TONE_STYLES;
+const COPY_BUTTON_PADDING = 'pr-24';
 
 interface PromptExampleEntry {
   label: string;
@@ -67,7 +68,7 @@ export function PromptExampleStack({
                 <span>{label}</span>
               </div>
               <div className="relative group/entry">
-                <pre className={`overflow-x-auto whitespace-pre-wrap rounded-xl border px-4 py-3 pr-24 font-mono text-sm leading-relaxed ${body}`}>
+                <pre className={`overflow-x-auto whitespace-pre-wrap rounded-xl border px-4 py-3 ${COPY_BUTTON_PADDING} font-mono text-sm leading-relaxed ${body}`}>
                   {content}
                 </pre>
                 <div className="absolute top-2 right-2">
@@ -110,7 +111,7 @@ export function PromptPatternCard({ title, best, why, bad }: PromptPatternCardPr
           <div>
             <span className="mb-1 block text-xs font-bold uppercase tracking-wider text-red-500">Bad</span>
             <div className="relative group/bad">
-              <pre className="overflow-x-auto whitespace-pre-wrap rounded-xl border border-red-100 bg-red-50 px-4 py-3 pr-24 font-mono text-sm leading-relaxed text-red-900">
+              <pre className={`overflow-x-auto whitespace-pre-wrap rounded-xl border border-red-100 bg-red-50 px-4 py-3 ${COPY_BUTTON_PADDING} font-mono text-sm leading-relaxed text-red-900`}>
                 {bad}
               </pre>
               <div className="absolute top-2 right-2 text-red-900">
@@ -127,7 +128,7 @@ export function PromptPatternCard({ title, best, why, bad }: PromptPatternCardPr
         <div>
           <span className="mb-1 block text-xs font-bold uppercase tracking-wider text-blue-600">Best</span>
           <div className="relative group/best">
-            <pre className="overflow-x-auto whitespace-pre-wrap rounded-xl border border-blue-100 bg-blue-50 px-4 py-3 pr-24 font-mono text-sm leading-relaxed text-blue-900">
+            <pre className={`overflow-x-auto whitespace-pre-wrap rounded-xl border border-blue-100 bg-blue-50 px-4 py-3 ${COPY_BUTTON_PADDING} font-mono text-sm leading-relaxed text-blue-900`}>
               {best}
             </pre>
             <div className="absolute top-2 right-2 text-blue-900">
