@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { ArrowRight, CheckCircle, Forward, Minimize2 } from 'lucide-react';
+import { CopyablePromptBlock } from '../CopyablePromptBlock';
 
 interface PromptTypeCardProps {
   number: string;
@@ -80,9 +81,9 @@ function PromptTypeCard({ number, icon, title, tagline, example, note }: PromptT
       </div>
       <div className="p-5 sm:p-6">
         <p className="mb-4 font-medium leading-relaxed text-gray-800">{tagline}</p>
-        <pre className="mb-4 overflow-x-auto whitespace-pre-wrap rounded-lg bg-gray-900 p-4 font-mono text-sm leading-relaxed text-gray-100">
-          {example}
-        </pre>
+        <div className="mb-4">
+          <CopyablePromptBlock text={example} />
+        </div>
         <p className="rounded-lg border border-blue-100 bg-blue-50 p-3 text-sm leading-relaxed text-blue-800">{note}</p>
       </div>
     </div>

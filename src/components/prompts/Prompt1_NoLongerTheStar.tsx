@@ -1,4 +1,5 @@
 import { CrossViewLink } from '../CrossViewLink';
+import { CopyablePromptBlock } from '../CopyablePromptBlock';
 
 export function Prompt1_NoLongerTheStar() {
   return (
@@ -18,11 +19,13 @@ export function Prompt1_NoLongerTheStar() {
 
       <p className="mb-6 leading-relaxed text-gray-700">Old prompt engineering tried to simulate expertise:</p>
 
-      <pre className="mb-6 overflow-x-auto whitespace-pre-wrap rounded-lg bg-gray-900 p-4 font-mono text-sm leading-relaxed text-gray-100">
-        {`You are an expert senior software engineer.
+      <div className="mb-6">
+        <CopyablePromptBlock
+          text={`You are an expert senior software engineer.
 Write clean, scalable, maintainable code.
 Follow best practices and think step by step.`}
-      </pre>
+        />
+      </div>
 
       <p className="mb-6 leading-relaxed text-gray-700">
         That sounds serious and constrains almost nothing. The model can still change APIs, skip verification, drift
