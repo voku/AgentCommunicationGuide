@@ -18,12 +18,16 @@ export function CopyToClipboardButton({
   className = '',
 }: CopyToClipboardButtonProps) {
   const [copied, setCopied] = useState(false);
-  const timeoutRef = useRef<number | null>(null);
+  const timeoutRef = useRef(0);
+  const frameRef = useRef(0);
 
   useEffect(() => {
     return () => {
-      if (timeoutRef.current !== null) {
+      if (timeoutRef.current) {
         window.clearTimeout(timeoutRef.current);
+      }
+      if (frameRef.current) {
+        window.cancelAnimationFrame(frameRef.current);
       }
     };
   }, []);
@@ -31,15 +35,22 @@ export function CopyToClipboardButton({
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(text);
-      setCopied(true);
 
-      if (timeoutRef.current !== null) {
+      if (timeoutRef.current) {
         window.clearTimeout(timeoutRef.current);
       }
+      if (frameRef.current) {
+        window.cancelAnimationFrame(frameRef.current);
+      }
 
-      timeoutRef.current = window.setTimeout(() => {
-        setCopied(false);
-      }, COPY_FEEDBACK_DURATION_MS);
+      setCopied(false);
+      frameRef.current = window.requestAnimationFrame(() => {
+        setCopied(true);
+        timeoutRef.current = window.setTimeout(() => {
+          setCopied(false);
+          timeoutRef.current = 0;
+        }, COPY_FEEDBACK_DURATION_MS);
+      });
     } catch {
       // clipboard access denied or unavailable
     }
