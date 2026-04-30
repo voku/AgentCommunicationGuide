@@ -18,15 +18,15 @@ export function CopyToClipboardButton({
   className = '',
 }: CopyToClipboardButtonProps) {
   const [copied, setCopied] = useState(false);
-  const timeoutRef = useRef(0);
-  const frameRef = useRef(0);
+  const timeoutRef = useRef<number | null>(null);
+  const frameRef = useRef<number | null>(null);
 
   useEffect(() => {
     return () => {
-      if (timeoutRef.current) {
+      if (timeoutRef.current !== null) {
         window.clearTimeout(timeoutRef.current);
       }
-      if (frameRef.current) {
+      if (frameRef.current !== null) {
         window.cancelAnimationFrame(frameRef.current);
       }
     };
@@ -36,10 +36,10 @@ export function CopyToClipboardButton({
     try {
       await navigator.clipboard.writeText(text);
 
-      if (timeoutRef.current) {
+      if (timeoutRef.current !== null) {
         window.clearTimeout(timeoutRef.current);
       }
-      if (frameRef.current) {
+      if (frameRef.current !== null) {
         window.cancelAnimationFrame(frameRef.current);
       }
 
@@ -48,7 +48,7 @@ export function CopyToClipboardButton({
         setCopied(true);
         timeoutRef.current = window.setTimeout(() => {
           setCopied(false);
-          timeoutRef.current = 0;
+          timeoutRef.current = null;
         }, COPY_FEEDBACK_DURATION_MS);
       });
     } catch {
