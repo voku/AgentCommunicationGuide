@@ -71,7 +71,7 @@ export function Prompt15_FinalThesis() {
       />
 
       <PromptExampleStack
-        title="Ask questions before assuming"
+        title="Investigate before asking questions"
         entries={[
           {
             label: 'Weak',
@@ -82,10 +82,10 @@ export function Prompt15_FinalThesis() {
             label: 'Best',
             tone: 'blue',
             content:
-              'Before you start, ask me any questions you need to confidently complete this task.\nDo not assume. If something is ambiguous, surface it now.',
+              'Before you ask me anything, inspect the relevant files, tests, logs, schemas, and docs first.\nAsk a question only if missing information still blocks a safe next step.\nIf progress is possible, state your assumption, proceed, and verify it quickly.',
           },
         ]}
-        note="An agent that asks one clarifying question before starting is almost always faster than one that implements the wrong thing and needs to be corrected twice."
+        note="Questions are expensive if the repository already contains the answer. Evidence-first agents inspect what they can, ask only when they are truly blocked, and keep their assumptions explicit until they are verified."
       />
 
       <div className="mt-10 rounded-2xl bg-gray-900 p-6 text-white shadow-xl sm:p-8">

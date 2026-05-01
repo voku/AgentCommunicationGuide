@@ -17,10 +17,10 @@ import { Prompt3_AntiAnchoringTrick } from './components/prompts/Prompt3_AntiAnc
 import { Prompt4_AskForProof } from './components/prompts/Prompt4_AskForProof';
 import { Prompt5_PreventHallucination } from './components/prompts/Prompt5_PreventHallucination';
 import { Prompt6_ContextAnchors } from './components/prompts/Prompt6_ContextAnchors';
-import { Prompt7_AttentionSteering } from './components/prompts/Prompt7_AttentionSteering';
-import { Prompt8_PlanningPrompts } from './components/prompts/Prompt8_PlanningPrompts';
-import { Prompt9_NativeLanguage } from './components/prompts/Prompt9_NativeLanguage';
-import { Prompt10_VaguePhrases } from './components/prompts/Prompt10_VaguePhrases';
+import { Prompt7_PlanningPrompts } from './components/prompts/Prompt7_PlanningPrompts';
+import { Prompt8_NativeLanguage } from './components/prompts/Prompt8_NativeLanguage';
+import { Prompt9_VaguePhrases } from './components/prompts/Prompt9_VaguePhrases';
+import { Prompt10_Directness } from './components/prompts/Prompt10_Directness';
 import { Prompt11_DoubleCheckMultiPass } from './components/prompts/Prompt11_DoubleCheckMultiPass';
 import { Prompt12_DeletionContainment } from './components/prompts/Prompt12_DeletionContainment';
 import { Prompt13_MomentumMissingness } from './components/prompts/Prompt13_MomentumMissingness';
@@ -309,10 +309,10 @@ export default function App() {
                     <Prompt4_AskForProof />
                     <Prompt5_PreventHallucination />
                     <Prompt6_ContextAnchors />
-                    <Prompt7_AttentionSteering />
-                    <Prompt8_PlanningPrompts />
-                    <Prompt9_NativeLanguage />
-                    <Prompt10_VaguePhrases />
+                    <Prompt7_PlanningPrompts />
+                    <Prompt8_NativeLanguage />
+                    <Prompt9_VaguePhrases />
+                    <Prompt10_Directness />
                     <Prompt11_DoubleCheckMultiPass />
                     <Prompt12_DeletionContainment />
                     <Prompt13_MomentumMissingness />
