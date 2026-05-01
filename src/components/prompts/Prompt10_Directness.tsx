@@ -1,6 +1,6 @@
 import { PromptExampleStack } from './PromptExampleLayouts';
 
-export function Prompt10_VaguePhrases() {
+export function Prompt10_Directness() {
   return (
     <div id="prompt-10" className="mb-16 scroll-mt-24 sm:mb-24">
       <h2 className="mb-6 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl md:text-4xl">
@@ -29,46 +29,45 @@ export function Prompt10_VaguePhrases() {
               label: 'Best',
               tone: 'blue',
               content:
-                'This patch violates the task constraints.\n\nProblems:\n- public API changed\n- regression test missing\n- unrelated files modified\n\nDiscard it and restart with:\n1. failing test first\n2. minimal patch\n3. raw validator output',
+                'This patch is incorrect.\nProblems:\n- public API changed\n- regression test missing\n- unrelated files modified\nDiscard it and restart with:\n1. failing test first\n2. minimal patch\n3. paste the validation output',
             },
           ]}
           note="The model does not interpret 'maybe reconsider' as a correction signal. It interprets it as soft approval. Name the violations, list them explicitly, and state the required restart conditions."
         />
         <PromptExampleStack
-          title="Directness beats politeness — discard and restart"
+          title="Reject unsupported success claims"
           entries={[
             {
-              label: 'Bad',
+              label: 'Weak',
               tone: 'red',
-              content: 'Maybe reconsider this implementation.',
+              content: 'Looks good now, I think.',
             },
             {
               label: 'Best',
               tone: 'blue',
               content:
-                'This patch is incorrect.\nProblems:\n- public API changed\n- regression test missing\n- unrelated files modified\nDiscard it and restart with:\n1. failing test first\n2. minimal patch\n3. paste the validation output',
+                'Do not claim success yet.\nShow the exact command you ran, paste the raw output, and list what is still unverified.\nIf you skipped verification, say that explicitly and explain why.',
             },
           ]}
-          note="Polite hedging gives the agent permission to interpret, defer, or do nothing. A clear rejection with numbered restart instructions leaves no room for ambiguity. Agents respond far better to specific rejection criteria than to vague suggestions to 'reconsider'."
+          note="Directness is not only for rejecting bad patches. It is also for rejecting unsupported confidence. Make the agent tie every success claim to observable evidence, and force it to name the remaining gaps instead of hand-waving past them."
         />
 
         <PromptExampleStack
-          title="Stopping condition — vague vs. operational"
+          title="When validation fails, report the next safe step"
           entries={[
             {
-              label: 'Bad',
+              label: 'Weak',
               tone: 'red',
-              content:
-                'You might want to stop if something seems wrong, maybe after a few retries or so.',
+              content: 'Something still seems off, maybe try again.',
             },
             {
               label: 'Best',
               tone: 'blue',
               content:
-                'If the build fails three times in a row, stop.\nDo not attempt a fourth fix.\nSummarize the root cause and list what is still unknown.',
+                'The check still fails.\nStop claiming success.\nSummarize the exact failing command, the concrete error, and the smallest next fix to try.\nIf you need more information before changing code again, state exactly what is missing.',
             },
           ]}
-          note="'Maybe' stopping conditions are not stopping conditions. Write them as exact thresholds with exact actions."
+          note="A direct failure response prevents the agent from drifting into optimistic retries. It has to acknowledge the failed evidence, describe the smallest next step, and say what blocked further progress."
         />
       </div>
     </div>

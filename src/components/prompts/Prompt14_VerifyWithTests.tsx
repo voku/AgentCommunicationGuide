@@ -14,6 +14,24 @@ export function Prompt14_VerifyWithTests() {
 
       <div className="space-y-6">
         <PromptExampleStack
+          title="Choose the cheapest meaningful verification"
+          entries={[
+            {
+              label: 'Weak',
+              tone: 'amber',
+              content: 'Run the full suite after every edit.',
+            },
+            {
+              label: 'Best',
+              tone: 'blue',
+              content:
+                'Choose verification based on risk and scope.\nFor trivial edits, inspect the affected file and run a syntax/build check when useful.\nFor local behavior changes, add or update focused tests and run the smallest relevant command.\nFor public API, security, dependency, serialization, or cross-cutting changes, run broader tests and static analysis.',
+            },
+          ]}
+          note="Good verification is proportional. Cheap checks are enough for cheap changes; broader checks are required when the blast radius or irreversibility grows."
+        />
+
+        <PromptExampleStack
           title="Use tests to validate, not to satisfy"
           entries={[
             {
@@ -126,6 +144,24 @@ Report which regression or risk area each group of new tests closes.`,
             },
           ]}
           note="The weak version has the right instinct — meaningful coverage must find problems — but 'your tests are shit' gives the agent no actionable guidance. The best version keeps the same quality bar (5 % growth + at least one real finding) and tells the agent exactly what to do when it falls short: keep going and report what it found."
+        />
+
+        <PromptExampleStack
+          title="Final report must match the evidence"
+          entries={[
+            {
+              label: 'Weak',
+              tone: 'amber',
+              content: 'It works now.',
+            },
+            {
+              label: 'Best',
+              tone: 'blue',
+              content:
+                'End with:\n- what changed\n- why it changed\n- files touched\n- verification run\n- verification skipped (with reason)\n- remaining risk\nNever claim success beyond the checks you actually ran.',
+            },
+          ]}
+          note="Verification is only useful if the final report exposes its actual coverage. This structure makes confidence auditable and prevents the agent from quietly overstating what was proven."
         />
 
         <PromptExampleStack
