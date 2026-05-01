@@ -158,7 +158,7 @@ Report which regression or risk area each group of new tests closes.`,
               label: 'Best',
               tone: 'blue',
               content:
-                'End with:\n- what changed\n- why it changed\n- files touched\n- verification run\n- verification skipped, with reason\n- remaining risk\nNever claim success beyond the checks you actually ran.',
+                'End with:\n- what changed\n- why it changed\n- files touched\n- verification run\n- verification skipped (with reason)\n- remaining risk\nNever claim success beyond the checks you actually ran.',
             },
           ]}
           note="Verification is only useful if the final report exposes its actual coverage. This structure makes confidence auditable and prevents the agent from quietly overstating what was proven."
