@@ -165,6 +165,62 @@ Report which regression or risk area each group of new tests closes.`,
         />
 
         <PromptExampleStack
+          title="Use blunt language as a quality gate — not decoration"
+          entries={[
+            {
+              label: 'Weak',
+              tone: 'amber',
+              content:
+                'Please write high-quality tests for this code.\nMake sure they are thorough and cover edge cases.\nThank you.',
+            },
+            {
+              label: 'Best',
+              tone: 'blue',
+              content:
+`# Test Quality Review
+
+Your job is to prove whether these tests are useful.
+
+Be strict.
+
+If the tests only increase coverage without finding a regression, missing edge case, weak assertion, surviving mutant, or broken invariant, then the tests are shit.
+
+Do not write shit tests.
+
+A shit test is a test that:
+- executes code without proving behavior,
+- asserts only \`not null\`, \`true\`, or "no exception happened,"
+- mocks the important behavior away,
+- duplicates the implementation,
+- passes even when the business rule is broken,
+- increases coverage while killing no meaningful mutants.
+
+Your task:
+1. Inspect the changed production code.
+2. Explain the intended behavior.
+3. Find untested edge cases.
+4. Add tests that would fail if the implementation were wrong.
+5. Run mutation testing.
+6. Improve the tests until meaningful mutants are killed.
+7. If no regression or weak spot is found, explain why the existing tests are not shit.
+
+Final report:
+- Shit tests found:
+- Weak assertions replaced:
+- Regression found:
+- Edge cases added:
+- Mutants killed:
+- Remaining suspicious areas:
+
+> If the tests never make broken code fail, the tests are shit.
+
+Add tests until you find at least one real regression, otherwise your tests are shit anyway.`,
+            },
+          ]}
+          note="Coding agents respond better to blunt, unambiguous evaluation than polite corporate fog — not because they have feelings, but because 'this is bad' creates a sharper classification boundary than 'maybe improve this a little, thx.' The structured format converts blunt language into actionable gates: each criterion names exactly what must not appear, and the numbered task list tells the agent exactly what to do instead."
+        />
+
+        <PromptExampleStack
           title="Combined example — calibrate coverage to a real maintainer"
           entries={[
             {
