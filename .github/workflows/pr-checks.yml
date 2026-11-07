@@ -44,6 +44,8 @@ jobs:
         run: npm ci --no-audit --no-fund
       - name: Type-check
         run: npm run lint
+      - name: Test virtualized chat row sizing
+        run: node --test tests/react-virtual.test.mjs
       - name: Production build
         run: npm run build
       - name: Verify build output
